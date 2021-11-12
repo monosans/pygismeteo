@@ -1,20 +1,24 @@
 # -*- coding: utf-8 -*-
 from re import findall
+from typing import Optional
 
 from lxml.html import fromstring
+from requests import Session
 
 from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
-from pygismeteo.http import req
+from pygismeteo.http import HTTPSession
 from pygismeteo.main_class import Gismeteo
 
 
-def gismeteo(locality: str) -> Gismeteo:
+def gismeteo(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
     """Фабрика для Gismeteo.
 
     Args:
         locality (str): Населённый пункт.
             Может быть ссылкой на сайт типа gismeteo.ru/weather-moscow-4368/
             или названием населённого пункта, например, Москва.
+        session (Optional[Session], optional): Экземпляр requests.Session,
+            если нужно использовать свой. Defaults to None.
 
     Raises:
         InvalidLocalityID: Указана неверная ссылка.
@@ -23,12 +27,13 @@ def gismeteo(locality: str) -> Gismeteo:
     Returns:
         Gismeteo: Экземпляр класса Gismeteo.
     """
+    sess = HTTPSession(session)
     if "weather-" in locality:
         endpoint = findall(r".*(weather-.*-\d+).*", locality)
         if len(endpoint) != 1:
             raise InvalidLocalityID()
-        return Gismeteo(f"/{endpoint[0]}/")
-    r = req(f"/search/{locality}")
+        return Gismeteo(f"/{endpoint[0]}/", sess)
+    r = sess.req(f"/search/{locality}")
     tree = fromstring(r)
     localities = tree.xpath(
         '//section[contains(@class,"section-catalog")]'
@@ -36,4 +41,4 @@ def gismeteo(locality: str) -> Gismeteo:
     )
     if not localities:
         raise LocalityNotFound()
-    return Gismeteo(localities[0])
+    return Gismeteo(localities[0], sess)

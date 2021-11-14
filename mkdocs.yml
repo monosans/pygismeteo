@@ -3,12 +3,21 @@ site_description: Wrapper for Gismeteo.ru
 site_author: monosans
 repo_name: monosans/pygismeteo
 repo_url: https://github.com/monosans/pygismeteo
+edit_uri: edit/main/docs/
 theme:
   name: material
   language: ru
   palette:
-    scheme: slate
-    primary: black
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: fontawesome/solid/sun
+        name: Светлый режим
+    - scheme: default
+      primary: black
+      toggle:
+        icon: fontawesome/solid/moon
+        name: Тёмный режим
   icon:
     repo: fontawesome/brands/github
     logo: fontawesome/solid/tint

@@ -3,10 +3,11 @@ from typing import Dict
 
 from lxml.html import fromstring
 
+from pygismeteo._dates.abc import ABCDate
 from pygismeteo._utils import normalize_strs, strip_strs
 
 
-class Month:
+class Month(ABCDate):
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
         self._TIME = strip_strs(

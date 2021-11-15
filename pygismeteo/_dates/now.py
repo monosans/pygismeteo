@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from lxml.html import fromstring
 
+from pygismeteo._dates.abc import ABCDate
 from pygismeteo._utils import normalize_str
 
 
-class Now:
+class Now(ABCDate):
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
 

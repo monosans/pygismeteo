@@ -4,10 +4,11 @@ from typing import Dict, Optional
 from lxml.html import fromstring
 
 from pygismeteo._dates import xpaths
+from pygismeteo._dates.abc import ABCDate
 from pygismeteo._utils import normalize_strs, strip_strs
 
 
-class TwoWeeks:
+class TwoWeeks(ABCDate):
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
         self._TIME = strip_strs(

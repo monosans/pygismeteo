@@ -4,6 +4,7 @@ from typing import Dict, Optional, Tuple
 from lxml.html import fromstring
 
 from pygismeteo._dates import xpaths
+from pygismeteo._dates.abc import ABCDate
 from pygismeteo._utils import normalize_strs
 
 
@@ -111,7 +112,7 @@ class Evening(Night):
     _start = 3
 
 
-class ThreeDays:
+class ThreeDays(ABCDate):
     def __init__(self, html: bytes) -> None:
         tree = fromstring(html)
         time = tuple(

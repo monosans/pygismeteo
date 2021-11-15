@@ -52,7 +52,7 @@ nav:
       - month() - месяц: dates/month.md
   - Исключения (exceptions): exceptions.md
   - Типизация: typing.md
-  - Рекомендации: recommendations.md
+  - Рекомендумые IDE: ide.md
   - Свой экземпляр requests.Session: session.md
 markdown_extensions:
   - pymdownx.superfences

@@ -16,7 +16,9 @@ python -m pip install -U pygismeteo
 
 ## Документация
 
-https://pygismeteo.readthedocs.io
+Для текущей релизной версии - https://pygismeteo.readthedocs.io
+
+Для git версии - https://pygismeteo.readthedocs.io/ru/latest
 
 ## Пример, выводящий температуру в Москве сейчас
 

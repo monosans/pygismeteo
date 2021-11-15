@@ -6,7 +6,7 @@
 
 Обёртка для [Gismeteo.ru](https://gismeteo.ru).
 
-Асинхронная версия [здесь](https://github.com/monosans/pygismeteo).
+Асинхронная версия [здесь](https://github.com/monosans/aiopygismeteo).
 
 ## Установка
 

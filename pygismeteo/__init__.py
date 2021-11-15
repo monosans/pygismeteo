@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-from pygismeteo.gismeteo import gismeteo
+from pygismeteo.fabric import gismeteo
 
 __all__ = ("gismeteo",)

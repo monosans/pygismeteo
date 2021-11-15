@@ -9,6 +9,8 @@ from pygismeteo._utils import normalize_strs, strip_strs
 
 
 class OneDay(ABCDate):
+    """Класс, от которого наследуются однодневные классы."""
+
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
         self._TIME = strip_strs(
@@ -112,40 +114,40 @@ class OneDay(ABCDate):
 
 
 class Today(OneDay):
-    pass
+    """Возвращается методом today() класса Gismeteo."""
 
 
 class Tomorrow(OneDay):
-    pass
+    """Возвращается методом tomorrow() класса Gismeteo."""
 
 
 class In3Days(OneDay):
-    pass
+    """Возвращается методом in3_days() класса Gismeteo."""
 
 
 class In4Days(OneDay):
-    pass
+    """Возвращается методом in4_days() класса Gismeteo."""
 
 
 class In5Days(OneDay):
-    pass
+    """Возвращается методом in5_days() класса Gismeteo."""
 
 
 class In6Days(OneDay):
-    pass
+    """Возвращается методом in6_days() класса Gismeteo."""
 
 
 class In7Days(OneDay):
-    pass
+    """Возвращается методом in7_days() класса Gismeteo."""
 
 
 class In8Days(OneDay):
-    pass
+    """Возвращается методом in8_days() класса Gismeteo."""
 
 
 class In9Days(OneDay):
-    pass
+    """Возвращается методом in9_days() класса Gismeteo."""
 
 
 class In10Days(OneDay):
-    pass
+    """Возвращается методом in10_days() класса Gismeteo."""

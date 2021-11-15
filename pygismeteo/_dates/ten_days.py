@@ -6,6 +6,8 @@ from pygismeteo._dates.two_weeks import TwoWeeksBase
 
 
 class TenDays(TwoWeeksBase):
+    """Возвращается методом ten_days() класса Gismeteo."""
+
     @property
     def ultraviolet_index(self) -> Dict[str, str]:
         """Ультрафиолетовый индекс, баллы."""

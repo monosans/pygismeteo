@@ -113,6 +113,8 @@ class Evening(Night):
 
 
 class ThreeDays(ABCDate):
+    """Возвращается методом three_days() класса Gismeteo."""
+
     def __init__(self, html: bytes) -> None:
         tree = fromstring(html)
         time = tuple(

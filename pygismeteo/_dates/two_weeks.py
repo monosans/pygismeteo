@@ -104,4 +104,4 @@ class TwoWeeksBase(ABCDate):
 
 
 class TwoWeeks(TwoWeeksBase):
-    pass
+    """Возвращается методом two_weeks() класса Gismeteo."""

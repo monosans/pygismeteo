@@ -20,6 +20,8 @@ from pygismeteo._http import HTTPSession
 
 
 class Gismeteo:
+    """Возвращается фабрикой gismeteo()."""
+
     def __init__(self, base_endpoint: str, session: HTTPSession) -> None:
         self._base_endpoint = base_endpoint
         self._session = session

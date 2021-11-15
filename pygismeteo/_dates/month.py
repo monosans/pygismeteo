@@ -8,6 +8,8 @@ from pygismeteo._utils import normalize_strs, strip_strs
 
 
 class Month(ABCDate):
+    """Возвращается методом month() класса Gismeteo."""
+
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
         self._TIME = strip_strs(

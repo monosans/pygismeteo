@@ -6,6 +6,8 @@ from pygismeteo._utils import normalize_str
 
 
 class Now(ABCDate):
+    """Возвращается методом now() класса Gismeteo."""
+
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
 

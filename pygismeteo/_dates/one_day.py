@@ -108,3 +108,43 @@ class OneDay:
             else (default_value,) * len(self._TIME)
         )
         return dict(zip(self._TIME, elements))
+
+
+class Today(OneDay):
+    pass
+
+
+class Tomorrow(OneDay):
+    pass
+
+
+class In3Days(OneDay):
+    pass
+
+
+class In4Days(OneDay):
+    pass
+
+
+class In5Days(OneDay):
+    pass
+
+
+class In6Days(OneDay):
+    pass
+
+
+class In7Days(OneDay):
+    pass
+
+
+class In8Days(OneDay):
+    pass
+
+
+class In9Days(OneDay):
+    pass
+
+
+class In10Days(OneDay):
+    pass

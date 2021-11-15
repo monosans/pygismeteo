@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-
 from pygismeteo._dates.month import Month
 from pygismeteo._dates.now import Now
-from pygismeteo._dates.one_day import OneDay
+from pygismeteo._dates.one_day import (
+    In3Days,
+    In4Days,
+    In5Days,
+    In6Days,
+    In7Days,
+    In8Days,
+    In9Days,
+    In10Days,
+    Today,
+    Tomorrow,
+)
 from pygismeteo._dates.ten_days import TenDays
 from pygismeteo._dates.three_days import ThreeDays
 from pygismeteo._dates.two_weeks import TwoWeeks
@@ -17,45 +28,45 @@ class Gismeteo:
         """Сейчас."""
         return Now(self._session.req(f"{self._base_endpoint}now/"))
 
-    def today(self) -> OneDay:
+    def today(self) -> Today:
         """Сегодня."""
-        return OneDay(self._session.req(self._base_endpoint))
+        return Today(self._session.req(self._base_endpoint))
 
-    def tomorrow(self) -> OneDay:
+    def tomorrow(self) -> Tomorrow:
         """Завтра."""
-        return OneDay(self._session.req(f"{self._base_endpoint}tomorrow/"))
+        return Tomorrow(self._session.req(f"{self._base_endpoint}tomorrow/"))
 
-    def in3_days(self) -> OneDay:
+    def in3_days(self) -> In3Days:
         """Через 3 дня (послезавтра)."""
-        return OneDay(self._session.req(f"{self._base_endpoint}3-day/"))
+        return In3Days(self._session.req(f"{self._base_endpoint}3-day/"))
 
-    def in4_days(self) -> OneDay:
+    def in4_days(self) -> In4Days:
         """Через 4 дня."""
-        return OneDay(self._session.req(f"{self._base_endpoint}4-day/"))
+        return In4Days(self._session.req(f"{self._base_endpoint}4-day/"))
 
-    def in5_days(self) -> OneDay:
+    def in5_days(self) -> In5Days:
         """Через 5 дней."""
-        return OneDay(self._session.req(f"{self._base_endpoint}5-day/"))
+        return In5Days(self._session.req(f"{self._base_endpoint}5-day/"))
 
-    def in6_days(self) -> OneDay:
+    def in6_days(self) -> In6Days:
         """Через 6 дней."""
-        return OneDay(self._session.req(f"{self._base_endpoint}6-day/"))
+        return In6Days(self._session.req(f"{self._base_endpoint}6-day/"))
 
-    def in7_days(self) -> OneDay:
+    def in7_days(self) -> In7Days:
         """Через 7 дней."""
-        return OneDay(self._session.req(f"{self._base_endpoint}7-day/"))
+        return In7Days(self._session.req(f"{self._base_endpoint}7-day/"))
 
-    def in8_days(self) -> OneDay:
+    def in8_days(self) -> In8Days:
         """Через 8 дней."""
-        return OneDay(self._session.req(f"{self._base_endpoint}8-day/"))
+        return In8Days(self._session.req(f"{self._base_endpoint}8-day/"))
 
-    def in9_days(self) -> OneDay:
+    def in9_days(self) -> In9Days:
         """Через 9 дней."""
-        return OneDay(self._session.req(f"{self._base_endpoint}9-day/"))
+        return In9Days(self._session.req(f"{self._base_endpoint}9-day/"))
 
-    def in10_days(self) -> OneDay:
+    def in10_days(self) -> In10Days:
         """Через 10 дней."""
-        return OneDay(self._session.req(f"{self._base_endpoint}10-day/"))
+        return In10Days(self._session.req(f"{self._base_endpoint}10-day/"))
 
     def three_days(self) -> ThreeDays:
         """3 дня."""

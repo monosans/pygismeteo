@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from pygismeteo import InvalidLocalityID, LocalityNotFound, gismeteo
+from pygismeteo import gismeteo
+from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
 
 
 def test_invalid_locality_id() -> None:

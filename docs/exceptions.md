@@ -21,7 +21,8 @@
 В данном примере пользователь вводит название населённого пункта или ссылку на него, и программа выводит температуру на данный момент в указанном населённом пункте. Если пользователь введёт неверное значение, он получит сообщение об этом.
 
 ```python
-from pygismeteo import gismeteo, InvalidLocalityID, LocalityNotFound
+from pygismeteo import gismeteo
+from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
 
 locality = input("Название населённого пункта или ссылка на gismeteo.ru: ")
 try:

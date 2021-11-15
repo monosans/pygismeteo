@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from pygismeteo.dates.month import Month
-from pygismeteo.dates.now import Now
-from pygismeteo.dates.one_day import OneDay
-from pygismeteo.dates.ten_days import TenDays
-from pygismeteo.dates.three_days import ThreeDays
-from pygismeteo.dates.two_weeks import TwoWeeks
-from pygismeteo.http import HTTPSession
+from pygismeteo._dates.month import Month
+from pygismeteo._dates.now import Now
+from pygismeteo._dates.one_day import OneDay
+from pygismeteo._dates.ten_days import TenDays
+from pygismeteo._dates.three_days import ThreeDays
+from pygismeteo._dates.two_weeks import TwoWeeks
+from pygismeteo._http import HTTPSession
 
 
 class Gismeteo:

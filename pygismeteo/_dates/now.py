@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from lxml.html import fromstring
 
-from pygismeteo.utils import normalize_str
+from pygismeteo._utils import normalize_str
 
 
 class Now:

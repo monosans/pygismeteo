@@ -3,7 +3,7 @@ from typing import Dict
 
 from lxml.html import fromstring
 
-from pygismeteo.utils import normalize_strs, strip_strs
+from pygismeteo._utils import normalize_strs, strip_strs
 
 
 class Month:

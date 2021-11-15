@@ -3,8 +3,8 @@ from typing import Dict, Optional
 
 from lxml.html import fromstring
 
-from pygismeteo.dates import xpaths
-from pygismeteo.utils import normalize_strs, strip_strs
+from pygismeteo._dates import xpaths
+from pygismeteo._utils import normalize_strs, strip_strs
 
 
 class OneDay:

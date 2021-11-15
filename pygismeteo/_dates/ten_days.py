@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from typing import Dict
 
-from pygismeteo.dates import xpaths
-from pygismeteo.dates.two_weeks import TwoWeeks
+from pygismeteo._dates import xpaths
+from pygismeteo._dates.two_weeks import TwoWeeks
 
 
 class TenDays(TwoWeeks):

@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 from lxml.html import fromstring
 
-from pygismeteo.dates import xpaths
-from pygismeteo.utils import normalize_strs
+from pygismeteo._dates import xpaths
+from pygismeteo._utils import normalize_strs, strip_strs
 
 
-class Night:
-    _start = 0
-
-    def __init__(self, tree, time: Tuple[str, ...]) -> None:
-        self._tree = tree
-        self._TIME = time
+class TwoWeeks:
+    def __init__(self, html: bytes) -> None:
+        self._tree = fromstring(html)
+        self._TIME = strip_strs(
+            self._tree.xpath(
+                xpaths.get_ancestor("forecast")
+                + '//span[contains(@class,"w_date__date")]/text()'
+            )
+        )
 
     @property
     def status(self) -> Dict[str, str]:
@@ -20,9 +23,14 @@ class Night:
         return self._build_result(*xpaths.STATUS)
 
     @property
-    def temperature(self) -> Dict[str, str]:
-        """Средняя температура, °C."""
-        return self._build_result(*xpaths.TEMPERATURE)
+    def max_temperature(self) -> Dict[str, str]:
+        """Макс. температура, °C."""
+        return self._build_result(*xpaths.MAX_TEMPERATURE)
+
+    @property
+    def min_temperature(self) -> Dict[str, str]:
+        """Мин. температура, °C."""
+        return self._build_result(*xpaths.MIN_TEMPERATURE)
 
     @property
     def gusts(self) -> Dict[str, str]:
@@ -39,6 +47,11 @@ class Night:
         )
 
     @property
+    def temperature(self) -> Dict[str, str]:
+        """Средняя температура, °C."""
+        return self._build_result(*xpaths.AVERAGE_TEMP)
+
+    @property
     def wind_speed(self) -> Dict[str, str]:
         """Скорость ветра, м/с."""
         return self._build_result(*xpaths.WIND_SPEED)
@@ -49,29 +62,19 @@ class Night:
         return self._build_result(*xpaths.WIND_DIRECTION)
 
     @property
-    def falling_snow(self) -> Dict[str, str]:
-        """Выпадающий снег, см."""
-        return self._build_result(*xpaths.FALLING_SNOW)
+    def max_pressure(self) -> Dict[str, str]:
+        """Макс. давление, мм рт. ст."""
+        return self._build_result(*xpaths.MAX_PRESSURE)
 
     @property
-    def snow_depth(self) -> Dict[str, str]:
-        """Высота снежного покрова, см."""
-        return self._build_result(*xpaths.SNOW_DEPTH)
-
-    @property
-    def pressure(self) -> Dict[str, str]:
-        """Давление, мм рт. ст."""
-        return self._build_result(*xpaths.PRESSURE)
+    def min_pressure(self) -> Dict[str, str]:
+        """Мин. давление, мм рт. ст."""
+        return self._build_result(*xpaths.MIN_PRESSURE)
 
     @property
     def humidity(self) -> Dict[str, str]:
         """Влажность, %."""
         return self._build_result(*xpaths.HUMIDITY)
-
-    @property
-    def ultraviolet_index(self) -> Dict[str, str]:
-        """Ультрафиолетовый индекс, баллы."""
-        return self._build_result(*xpaths.ULTRAVIOLET_INDEX)
 
     @property
     def gm_activity(self) -> Dict[str, str]:
@@ -89,51 +92,11 @@ class Night:
         elements = (
             normalize_strs(
                 self._tree.xpath(f"{parent_container}{xpath}"), default_value
-            )[self._start :: 4]
+            )
             if (
                 self._tree.xpath(parent_container)
                 and (not check_absence or not self._tree.xpath(check_absence))
             )
-            else (default_value,) * 3
+            else (default_value,) * len(self._TIME)
         )
         return dict(zip(self._TIME, elements))
-
-
-class Morning(Night):
-    _start = 1
-
-
-class Afternoon(Night):
-    _start = 2
-
-
-class Evening(Night):
-    _start = 3
-
-
-class ThreeDays:
-    def __init__(self, html: bytes) -> None:
-        tree = fromstring(html)
-        time = tuple(
-            day.split()[1].strip()
-            for day in tree.xpath(
-                f"{xpaths.get_ancestor('forecast')}//div[@data-index]//text()"
-            )
-        )
-        self._ARGS = (tree, time)
-
-    @property
-    def night(self) -> Night:
-        return Night(*self._ARGS)
-
-    @property
-    def morning(self) -> Morning:
-        return Morning(*self._ARGS)
-
-    @property
-    def afternoon(self) -> Afternoon:
-        return Afternoon(*self._ARGS)
-
-    @property
-    def evening(self) -> Evening:
-        return Evening(*self._ARGS)

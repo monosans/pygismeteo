@@ -6,8 +6,8 @@ from lxml.html import fromstring
 from requests import Session
 
 from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
-from pygismeteo.http import HTTPSession
-from pygismeteo.main_class import Gismeteo
+from pygismeteo._http import HTTPSession
+from pygismeteo._class import Gismeteo
 
 
 def gismeteo(locality: str, *, session: Optional[Session] = None) -> Gismeteo:

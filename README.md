@@ -3,6 +3,7 @@
 [![Build Status](https://github.com/monosans/pygismeteo/workflows/test/badge.svg?branch=main&event=push)](https://github.com/monosans/pygismeteo/actions?query=workflow%3Atest)
 [![codecov](https://codecov.io/gh/monosans/pygismeteo/branch/main/graph/badge.svg)](https://codecov.io/gh/monosans/pygismeteo)
 [![Python Version](https://img.shields.io/pypi/pyversions/pygismeteo.svg)](https://pypi.org/project/pygismeteo/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/monosans/pygismeteo/blob/main/LICENSE)
 
 Обёртка для [Gismeteo.ru](https://gismeteo.ru).
 
@@ -29,7 +30,3 @@ moscow = gismeteo("Москва")
 now = moscow.now()
 print(now.temperature)
 ```
-
-## License / Лицензия
-
-[MIT](LICENSE)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from pygismeteo._class import Gismeteo
 from pygismeteo._dates.abc import ABCDate
 from pygismeteo._dates.month import Month

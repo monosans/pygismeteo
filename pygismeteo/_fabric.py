@@ -5,9 +5,9 @@ from typing import Optional
 from lxml.html import fromstring
 from requests import Session
 
-from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
-from pygismeteo._http import HTTPSession
 from pygismeteo._class import Gismeteo
+from pygismeteo._http import HTTPSession
+from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
 
 
 def gismeteo(locality: str, *, session: Optional[Session] = None) -> Gismeteo:

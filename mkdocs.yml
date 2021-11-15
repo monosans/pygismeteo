@@ -53,6 +53,6 @@ nav:
   - Исключения (exceptions): exceptions.md
   - Типизация: typing.md
   - Рекомендации: recommendations.md
-  - Доп. возможности: additions.md
+  - Свой экземпляр requests.Session: session.md
 markdown_extensions:
   - pymdownx.superfences

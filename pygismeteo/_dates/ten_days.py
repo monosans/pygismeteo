@@ -2,10 +2,10 @@
 from typing import Dict
 
 from pygismeteo._dates import xpaths
-from pygismeteo._dates.two_weeks import TwoWeeks
+from pygismeteo._dates.two_weeks import TwoWeeksBase
 
 
-class TenDays(TwoWeeks):
+class TenDays(TwoWeeksBase):
     @property
     def ultraviolet_index(self) -> Dict[str, str]:
         """Ультрафиолетовый индекс, баллы."""

@@ -8,7 +8,7 @@ from pygismeteo._dates.abc import ABCDate
 from pygismeteo._utils import normalize_strs, strip_strs
 
 
-class TwoWeeks(ABCDate):
+class TwoWeeksBase(ABCDate):
     def __init__(self, html: bytes) -> None:
         self._tree = fromstring(html)
         self._TIME = strip_strs(
@@ -101,3 +101,7 @@ class TwoWeeks(ABCDate):
             else (default_value,) * len(self._TIME)
         )
         return dict(zip(self._TIME, elements))
+
+
+class TwoWeeks(TwoWeeksBase):
+    pass

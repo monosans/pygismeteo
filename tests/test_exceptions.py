@@ -2,14 +2,14 @@
 import pytest
 
 import pygismeteo
-from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
+from pygismeteo.exceptions import LocalityError
 
 
-def test_invalid_locality_id() -> None:
-    with pytest.raises(InvalidLocalityID):
+def test_by_url() -> None:
+    with pytest.raises(LocalityError):
         pygismeteo.by_url("moscow-weather-4368")
 
 
-def test_locality_not_found() -> None:
-    with pytest.raises(LocalityNotFound):
+def test_by_name() -> None:
+    with pytest.raises(LocalityError):
         pygismeteo.by_name("волыфдаловыфалдоыфва")

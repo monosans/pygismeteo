@@ -1,7 +1,3 @@
 # -*- coding: utf-8 -*-
-class LocalityNotFound(Exception):
-    pass
-
-
-class InvalidLocalityID(Exception):
+class LocalityError(Exception):
     pass

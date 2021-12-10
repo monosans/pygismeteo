@@ -7,7 +7,7 @@ from requests import Session
 
 from pygismeteo._class import Gismeteo
 from pygismeteo._http import HTTPSession
-from pygismeteo.exceptions import InvalidLocalityID, LocalityNotFound
+from pygismeteo.exceptions import LocalityError
 
 
 def by_name(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
@@ -19,7 +19,7 @@ def by_name(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
             если нужно использовать свой. Defaults to None.
 
     Raises:
-        LocalityNotFound: Населённый пункт не найден.
+        LocalityError: Населённый пункт не найден.
 
     Returns:
         Gismeteo: Экземпляр класса Gismeteo.
@@ -41,7 +41,7 @@ def by_name(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
         + '/section[last()]//a[contains(@class,"link-item")]/@href'
     )
     if not localities:
-        raise LocalityNotFound("Населённый пункт не найден.")
+        raise LocalityError("Населённый пункт не найден.")
     return Gismeteo(localities[0], sess)
 
 
@@ -54,7 +54,7 @@ def by_url(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
             если нужно использовать свой. Defaults to None.
 
     Raises:
-        InvalidLocalityID: Количество ссылок не равно 1.
+        LocalityError: Количество ссылок не равно 1.
 
     Returns:
         Gismeteo: Экземпляр класса Gismeteo.
@@ -74,5 +74,5 @@ def by_url(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
     """
     endpoint = findall(r".*(weather-.*-\d+).*", locality)
     if len(endpoint) != 1:
-        raise InvalidLocalityID("Количество ссылок не равно 1.")
+        raise LocalityError("Количество ссылок не равно 1.")
     return Gismeteo(f"/{endpoint[0]}/", HTTPSession(session))

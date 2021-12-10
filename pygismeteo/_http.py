@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from typing import Optional
 
+from pygismeteo_base.constants import USER_AGENT
 from requests import Session
 
 
@@ -12,11 +13,7 @@ class HTTPSession:
     def fetch(session: Session, endpoint: str) -> bytes:
         with session.get(
             f"https://gismeteo.ru{endpoint}",
-            headers={
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"
-                + " AppleWebKit/537.36 (KHTML, like Gecko)"
-                + " Chrome/95.0.4638.69 Safari/537.36"
-            },
+            headers={"User-Agent": USER_AGENT},
         ) as r:
             return r.content
 

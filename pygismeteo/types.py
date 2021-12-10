@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from pygismeteo._class import Gismeteo
-from pygismeteo._dates.abc import ABCDate
-from pygismeteo._dates.month import Month
-from pygismeteo._dates.now import Now
-from pygismeteo._dates.one_day import (
+from pygismeteo_base.dates.abc import ABCDate
+from pygismeteo_base.dates.month import Month
+from pygismeteo_base.dates.now import Now
+from pygismeteo_base.dates.one_day import (
     In3Days,
     In4Days,
     In5Days,
@@ -16,9 +15,11 @@ from pygismeteo._dates.one_day import (
     Today,
     Tomorrow,
 )
-from pygismeteo._dates.ten_days import TenDays
-from pygismeteo._dates.three_days import ThreeDays
-from pygismeteo._dates.two_weeks import TwoWeeks
+from pygismeteo_base.dates.ten_days import TenDays
+from pygismeteo_base.dates.three_days import ThreeDays
+from pygismeteo_base.dates.two_weeks import TwoWeeks
+
+from pygismeteo._class import Gismeteo
 
 __all__ = (
     "ABCDate",

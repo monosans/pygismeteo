@@ -3,6 +3,7 @@ from re import findall
 from typing import Optional
 
 from lxml.html import fromstring
+from pygismeteo_base.constants import URL_REGEX
 from requests import Session
 
 from pygismeteo._class import Gismeteo
@@ -72,7 +73,7 @@ def by_url(locality: str, *, session: Optional[Session] = None) -> Gismeteo:
         ... today = gm.today()
         ... print(today.wind_speed)
     """
-    endpoint = findall(r".*(weather-.*-\d+).*", locality)
+    endpoint = findall(URL_REGEX, locality)
     if len(endpoint) != 1:
         raise LocalityError("Количество ссылок не равно 1.")
     return Gismeteo(f"/{endpoint[0]}/", HTTPSession(session))

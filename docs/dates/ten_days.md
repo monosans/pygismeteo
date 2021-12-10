@@ -5,9 +5,9 @@
 ## Пример, выводящий температуру в Москве на 10 дней
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
 ten_days = moscow.ten_days()
 print(ten_days.temperature)
 ```

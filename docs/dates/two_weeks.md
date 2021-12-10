@@ -5,9 +5,9 @@
 ## Пример, выводящий температуру в Москве на 2 недели
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
 two_weeks = moscow.two_weeks()
 print(two_weeks.temperature)
 ```

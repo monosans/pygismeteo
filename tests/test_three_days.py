@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from utils import check_dict
 
-from pygismeteo import gismeteo
+import pygismeteo
 
 
 def test_three_days() -> None:
-    gm = gismeteo("weather-moscow-4368")
+    gm = pygismeteo.by_url("weather-moscow-4368")
     three_days = gm.three_days()
     for time in (
         three_days.night,

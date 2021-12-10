@@ -12,7 +12,7 @@
 ## Установка
 
 ```sh
-python -m pip install -U pygismeteo
+pip install -U pygismeteo
 ```
 
 ## Документация
@@ -24,9 +24,9 @@ python -m pip install -U pygismeteo
 ## Пример, выводящий температуру в Москве сейчас
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("Москва")
+moscow = pygismeteo.by_name("Москва")
 now = moscow.now()
 print(now.temperature)
 ```

@@ -5,9 +5,9 @@
 ## Пример, выводящий максимальную температуру в Москве на месяц
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
 month = moscow.month()
 print(month.max_temperature)
 ```

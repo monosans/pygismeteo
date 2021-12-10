@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from utils import check_dict
 
-from pygismeteo import gismeteo
+import pygismeteo
 
 
 def test_two_weeks() -> None:
-    gm = gismeteo("weather-moscow-4368")
+    gm = pygismeteo.by_url("weather-moscow-4368")
     two_weeks = gm.two_weeks()
     for attr in (
         two_weeks.status,

@@ -5,9 +5,9 @@
 ## Пример, выводящий температуру в Москве сейчас
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
 now = moscow.now()
 print(now.temperature)
 ```

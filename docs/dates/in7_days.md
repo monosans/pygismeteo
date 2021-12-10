@@ -5,9 +5,9 @@
 ## Пример, выводящий температуру в Москве через 7 дней
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
 in7_days = moscow.in7_days()
 print(in7_days.temperature)
 ```

@@ -1,9 +1,9 @@
 # Основной раздел (класс Gismeteo)
 
-Чтобы начать работу с библиотекой, импортируем функцию `gismeteo`:
+Чтобы начать работу с библиотекой, импортируем `pygismeteo`:
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 ```
 
 ## Создание экземпляра класса Gismeteo
@@ -14,20 +14,20 @@ from pygismeteo import gismeteo
 
 1. Через ссылку (рекомендуемый способ):
    ```python
-   moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+   moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
    ```
    Ссылку также можно указывать без `https://gismeteo.ru/`.
 2. Через название населённого пункта:
    ```python
-   moscow = gismeteo("Москва")
+   moscow = pygismeteo.by_name("Москва")
    ```
 
 ## Пример, выводящий температуру в Москве сейчас
 
 ```python
-from pygismeteo import gismeteo
+import pygismeteo
 
-moscow = gismeteo("https://gismeteo.ru/weather-moscow-4368/")
+moscow = pygismeteo.by_url("https://gismeteo.ru/weather-moscow-4368/")
 now = moscow.now()
 print(now.temperature)
 ```

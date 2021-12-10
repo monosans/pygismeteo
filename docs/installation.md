@@ -3,5 +3,5 @@
 Установить последнюю релизную версию с PyPI можно следующей командой:
 
 ```sh
-python -m pip install -U pygismeteo
+pip install -U pygismeteo
 ```

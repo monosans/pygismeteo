@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from pygismeteo import gismeteo
+import pygismeteo
 
 
 def test_now() -> None:
-    moscow = gismeteo("weather-moscow-4368")
+    moscow = pygismeteo.by_url("weather-moscow-4368")
     now = moscow.now()
     for attr in (
         now.status,

@@ -2,12 +2,12 @@
 from requests import Session
 from utils import check_dict
 
-from pygismeteo import gismeteo
+import pygismeteo
 
 
 def test_one_day() -> None:
     with Session() as s:
-        gm = gismeteo("weather-moscow-4368", session=s)
+        gm = pygismeteo.by_url("weather-moscow-4368", session=s)
         for callable in (
             gm.today,
             gm.tomorrow,

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from pygismeteo import gismeteo
+import pygismeteo
 
 
 def test_locality_id() -> None:
-    moscow = gismeteo("https://www.gismeteo.ru/weather-moscow-4368/")
+    moscow = pygismeteo.by_url("https://www.gismeteo.ru/weather-moscow-4368/")
     assert moscow._BASE_ENDPOINT == "/weather-moscow-4368/"
 
 
 def test_locality_name() -> None:
-    moscow = gismeteo("Москва")
+    moscow = pygismeteo.by_name("Москва")
     assert moscow._BASE_ENDPOINT == "/weather-moscow-4368/"

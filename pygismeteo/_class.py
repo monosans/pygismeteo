@@ -16,6 +16,7 @@ from pygismeteo_base.dates.one_day import (
 from pygismeteo_base.dates.ten_days import TenDays
 from pygismeteo_base.dates.three_days import ThreeDays
 from pygismeteo_base.dates.two_weeks import TwoWeeks
+
 from pygismeteo._http import HTTPSession
 
 

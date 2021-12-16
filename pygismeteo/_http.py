@@ -1,24 +1,41 @@
 # -*- coding: utf-8 -*-
-from typing import Optional
+from typing import Any, Dict, Optional
 
-from pygismeteo_base.constants import USER_AGENT
+import pygismeteo_base
 from requests import Session
 
 
-class HTTPSession:
-    def __init__(self, session: Optional[Session]) -> None:
-        self.session = session
+def _fetch(
+    endpoint: str, params: Dict[str, Any], token: str, session: Session
+) -> Dict[str, Any]:
+    with session.get(
+        f"https://api.gismeteo.net/v2/{endpoint}",
+        params=params,
+        headers={"X-Gismeteo-Token": token},
+    ) as r:
+        return dict(r.json())
 
-    @staticmethod
-    def fetch(session: Session, endpoint: str) -> bytes:
-        with session.get(
-            f"https://gismeteo.ru{endpoint}",
-            headers={"User-Agent": USER_AGENT},
-        ) as r:
-            return r.content
 
-    def req(self, endpoint: str) -> bytes:
-        if self.session:
-            return self.fetch(self.session, endpoint)
-        with Session() as session:
-            return self.fetch(session, endpoint)
+def get_json(
+    endpoint: str,
+    params: Dict[str, Any],
+    *,
+    token: str = pygismeteo_base.constants.DEFAULT_TOKEN,
+    session: Optional[Session] = None,
+) -> Dict[str, Any]:
+    if session:
+        return _fetch(endpoint, params, token, session)
+    with Session() as s:
+        return _fetch(endpoint, params, token, s)
+
+
+def get_response(
+    endpoint: str,
+    params: Dict[str, Any],
+    *,
+    token: str = pygismeteo_base.constants.DEFAULT_TOKEN,
+    session: Optional[Session] = None,
+) -> Dict[str, Any]:
+    return (get_json(endpoint, params, token=token, session=session)).get(
+        "response", {}
+    )

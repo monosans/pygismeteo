@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pygismeteo"
-version = "2.0.0"
-description = "Wrapper for Gismeteo.ru"
+version = "3.0.0"
+description = "Wrapper for Gismeteo.ru API"
 authors = ["monosans <hsyqixco@protonmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -19,20 +19,17 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-pygismeteo-base = "^1.0.0"
+pygismeteo-base = "^2.0.0"
 requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
 isort = "^5.10.1"
-
-mypy = "^0.910"
+mypy = "^0.920"
 types-requests = "^2.25.12"
-
 mkdocs = "^1.2.3"
-mkdocs-material = "^8.1.0"
-
-pre-commit = "^2.15.0"
+mkdocs-material = "^8.1.2"
+pre-commit = "^2.16.0"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 
@@ -43,6 +40,12 @@ skip-magic-trailing-comma = true
 [tool.isort]
 profile = "black"
 line_length = 79
+
+[tool.mypy]
+strict = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config --cov"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

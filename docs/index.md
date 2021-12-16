@@ -1,6 +1,6 @@
 # pygismeteo
 
-Добро пожаловать в документацию `pygismeteo`, обёртки для [Gismeteo.ru](https://gismeteo.ru) на Python!
+Добро пожаловать в документацию `pygismeteo`, обёртки для [Gismeteo.ru API](https://gismeteo.ru/api) на Python!
 
 Асинхронная версия [здесь](https://github.com/monosans/aiopygismeteo).
 

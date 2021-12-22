@@ -25,7 +25,7 @@ requests = "^2.25.1"
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
 isort = "^5.10.1"
-mypy = "^0.920"
+mypy = "^0.921"
 types-requests = "^2.25.12"
 mkdocs = "^1.2.3"
 mkdocs-material = "^8.1.2"

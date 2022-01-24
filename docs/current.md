@@ -1,27 +1,22 @@
-# Функция current
+# Метод current
 
-Данная функция позволяет получить текущую погоду.
+Данный метод позволяет получить текущую погоду.
 
 ## Аргументы
 
 Принимает 1 обязательный аргумент:
 
-- id - ID населённого пункта. О том, как получить ID по названию населённого пункта, см. [Получение ID населённого пункта по названию](search.md).
-
-и 3 необязательных аргумента:
-
-- lang - язык. По умолчанию "ru".
-- token - X-Gismeteo-Token, если используемый по умолчанию перестал работать.
-- session - экземпляр requests.Session, если нужно использовать свой.
+- id - ID населённого пункта. О том, как получить ID по названию населённого пункта, см. [Метод get_id_by_query](get_id_by_query.md).
 
 ## Пример
 
-Выводит текущую погоду в населённом пункте с ID 4368 (Москва).
+Выводит температуру в Москве сейчас.
 
 ```python
-import pygismeteo
+from pygismeteo import Gismeteo
 
-city_id = pygismeteo.search.id_by_query("Москва")
-gm = pygismeteo.current(city_id)
-print(gm.temperature.air.c)
+gm = Gismeteo()
+city_id = gm.get_id_by_query("Москва")
+current = gm.current(city_id)
+print(current.temperature.air.c)
 ```

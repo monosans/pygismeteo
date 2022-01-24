@@ -24,9 +24,10 @@ Git версия - <https://pygismeteo.readthedocs.io/ru/latest>
 ## Пример, выводящий температуру в Москве сейчас
 
 ```python
-import pygismeteo
+from pygismeteo import Gismeteo
 
-city_id = pygismeteo.search.id_by_query("Москва")
-gm = pygismeteo.current(city_id)
-print(gm.temperature.air.c)
+gm = Gismeteo()
+city_id = gm.get_id_by_query("Москва")
+current = gm.current(city_id)
+print(current.temperature.air.c)
 ```

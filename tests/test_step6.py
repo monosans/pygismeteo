@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import pygismeteo
+from pygismeteo import Gismeteo
 
 
 def test_step6() -> None:
-    pygismeteo.step6(4368, days="3")
+    Gismeteo().step6(4368, days="3")

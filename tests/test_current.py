@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import pygismeteo
+from pygismeteo import Gismeteo
 
 
 def test_current() -> None:
-    pygismeteo.current(4368)
+    Gismeteo().current(4368)

@@ -15,6 +15,8 @@ class Period(PeriodABC):
 
 
 class StepN(Generic[TDays, TStepNModel, TStepNModelItem], StepNABC, Period):
+    __slots__ = ()
+
     def by_coordinates(
         self, latitude: float, longitude: float, *, days: TDays
     ) -> List[TStepNModelItem]:

@@ -1,25 +1,35 @@
-# -*- coding: utf-8 -*-
-from typing import Any, Dict, Optional
+from typing import Optional
 
-import pygismeteo_base
+from pygismeteo_base.types import Lang
+from pygismeteo_base.validators import Settings
 from requests import Session
 
-from pygismeteo._exceptions import LocalityNotFound
+from pygismeteo._http import RequestsClient
+from pygismeteo._periods import Current, Step3, Step6, Step24
+from pygismeteo._search import Search
 
 
 class Gismeteo:
-    """Обёртка для Gismeteo.ru API."""
+    """Обёртка для Gismeteo API."""
 
-    __slots__ = ("lang", "token", "_session")
+    __slots__ = (
+        "_settings",
+        "_session",
+        "_current",
+        "_step3",
+        "_step6",
+        "_step24",
+        "_search",
+    )
 
     def __init__(
         self,
         *,
-        lang: pygismeteo_base.types.LANG = "ru",
-        token: str = pygismeteo_base.constants.DEFAULT_TOKEN,
+        lang: Optional[Lang] = None,
+        token: Optional[str] = None,
         session: Optional[Session] = None,
     ) -> None:
-        """Обёртка для Gismeteo.ru API.
+        """Обёртка для Gismeteo API.
 
         Args:
             lang: язык. По умолчанию "ru".
@@ -28,104 +38,61 @@ class Gismeteo:
             session: экземпляр requests.Session.
                 По умолчанию для каждого запроса создаётся новый экземпляр.
         """
-        self.lang = lang.strip()
-        self.token = token.strip()
-        self._session = session
+        self._settings = Settings(lang=lang, token=token)
+        self._session = RequestsClient(session, self._settings)
+        self._current = Current(self._session)
+        self._step3 = Step3(self._session)
+        self._step6 = Step6(self._session)
+        self._step24 = Step24(self._session)
+        self._search = Search(self._session)
 
-    def current(self, id: int) -> pygismeteo_base.models.current.Model:
-        """Текущая погода.
+    @property
+    def session(self) -> Optional[Session]:
+        return self._session.session
 
-        Args:
-            id: ID населённого пункта.
-                Получить можно при помощи метода get_id_by_query.
-        """
-        return pygismeteo_base.models.current.Model.parse_obj(
-            self._get_response(f"weather/current/{id}")
-        )
+    @session.setter
+    def session(self, session: Optional[Session]) -> None:
+        self._session.session = session
 
-    def step3(
-        self, id: int, days: pygismeteo_base.types.STEP3_DAYS
-    ) -> pygismeteo_base.models.step3or6.Model:
-        """Погода с шагом 3 часа.
+    @property
+    def lang(self) -> Optional[Lang]:
+        """Язык."""
+        return self._settings.lang
 
-        Args:
-            id: ID населённого пункта.
-                Получить можно при помощи метода get_id_by_query.
-            days: Количество дней (от 1 до 10).
-        """
-        return pygismeteo_base.models.step3or6.Model.parse_obj(
-            self._get_response(f"weather/forecast/{id}", {"days": str(days)})
-        )
+    @lang.setter
+    def lang(self, lang: Optional[Lang]) -> None:
+        self._settings.lang = lang
 
-    def step6(
-        self, id: int, days: pygismeteo_base.types.DAYS
-    ) -> pygismeteo_base.models.step3or6.Model:
-        """Погода с шагом 6 часов.
+    @property
+    def token(self) -> Optional[str]:
+        """X-Gismeteo-Token."""
+        return self._settings.token
 
-        Args:
-            id: ID населённого пункта.
-                Получить можно при помощи метода get_id_by_query.
-            days: Количество дней (от 3 до 10).
-        """
-        return pygismeteo_base.models.step3or6.Model.parse_obj(
-            self._get_response(
-                f"weather/forecast/by_day_part/{id}", {"days": str(days)}
-            )
-        )
+    @token.setter
+    def token(self, token: Optional[str]) -> None:
+        self._settings.token = token
 
-    def step24(
-        self, id: int, days: pygismeteo_base.types.DAYS
-    ) -> pygismeteo_base.models.step24.Model:
-        """Погода с шагом 24 часа.
+    @property
+    def current(self) -> Current:
+        """Текущая погода."""
+        return self._current
 
-        Args:
-            id: ID населённого пункта.
-                Получить можно при помощи метода get_id_by_query.
-            days: Количество дней (от 3 до 10).
-        """
-        return pygismeteo_base.models.step24.Model.parse_obj(
-            self._get_response(
-                f"weather/forecast/aggregate/{id}", {"days": str(days)}
-            )
-        )
+    @property
+    def step3(self) -> Step3:
+        """Погода с шагом 3 часа."""
+        return self._step3
 
-    def get_id_by_query(self, query: str) -> int:
-        """Получение ID населённого пункта по названию.
+    @property
+    def step6(self) -> Step6:
+        """Погода с шагом 6 часов."""
+        return self._step6
 
-        Args:
-            query: Название населённого пункта.
+    @property
+    def step24(self) -> Step24:
+        """Погода с шагом 24 часа."""
+        return self._step24
 
-        Raises:
-            LocalityNotFound: Населённый пункт не найден.
-
-        Returns:
-            ID населённого пункта.
-        """
-        items = self._get_response("search/cities", {"query": query})["items"]
-        if not items:
-            raise LocalityNotFound("Населённый пункт не найден.")
-        return int(items[0]["id"])
-
-    def _fetch(
-        self, endpoint: str, params: Optional[Dict[str, str]], session: Session
-    ) -> Any:
-        with session.get(
-            f"https://api.gismeteo.net/v2/{endpoint}",
-            params={"lang": self.lang, **(params or {})},
-            headers={"X-Gismeteo-Token": self.token},
-        ) as r:
-            r.raise_for_status()
-            return r.json()
-
-    def _get_json(
-        self, endpoint: str, params: Optional[Dict[str, str]] = None
-    ) -> Any:
-        if isinstance(self._session, Session):
-            return self._fetch(endpoint, params, self._session)
-        with Session() as session:
-            return self._fetch(endpoint, params, session)
-
-    def _get_response(
-        self, endpoint: str, params: Optional[Dict[str, str]] = None
-    ) -> Any:
-        return self._get_json(endpoint, params)["response"]
+    @property
+    def search(self) -> Search:
+        """Поиск."""
+        return self._search

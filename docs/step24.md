@@ -1,23 +1,38 @@
-# Метод step24
+# Атрибут step24
 
-Данный метод позволяет получить прогноз погоды с шагом 24 часа.
+## Метод by_id
 
-## Аргументы
+Погода с шагом 24 часа по ID географического объекта.
 
-Принимает 2 обязательных аргумента:
+Принимает 2 аргумента:
 
-- id - ID населённого пункта. О том, как получить ID по названию населённого пункта, см. [Метод get_id_by_query](get_id_by_query.md).
-- days - на какое количество дней нужно получить прогноз (от 3 до 10).
+- id (int) - ID географического объекта (получить можно через [Поиск](search.md))
+- days (int) - количество дней (от 3 до 10).
+
+## Метод by_coordinates
+
+Погода с шагом 24 часа по координатам.
+
+Принимает 3 аргумента:
+
+- latitude (float) - широта (от -90 до 90).
+- longitude (float) - долгота (от -180 до 180).
+- days (int) - количество дней (от 3 до 10).
+
+## Возвращаемый объект
+
+Оба метода возвращают `List[pygismeteo_base.models.step24.ModelItem]`.
 
 ## Пример
 
-Выводит температуру в Москве послезавтра.
+Выводит среднюю температуру в Москве послезавтра.
 
 ```python
 from pygismeteo import Gismeteo
 
 gm = Gismeteo()
-city_id = gm.get_id_by_query("Москва")
-step24 = gm.step24(city_id, days=3)
-print(step24[2].temperature.air.c)
+search_results = gm.search.by_query("Москва")
+city_id = search_results[0].id
+step24 = gm.step24.by_id(city_id, days=3)
+print(step24[2].temperature.air.avg.c)
 ```

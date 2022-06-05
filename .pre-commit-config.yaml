@@ -11,6 +11,7 @@ repos:
       - id: debug-statements
       - id: end-of-file-fixer
       - id: fix-encoding-pragma
+        args: ["--remove"]
       - id: mixed-line-ending
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -30,9 +31,4 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies:
-          [
-            pygismeteo_base<3.0.0,
-            requests<3.0.0,
-            types-requests<3.0.0,
-            pytest<8.0.0,
-          ]
+          [pygismeteo_base<4.0, requests<3.0, types-requests<3.0.0, pytest<8.0]

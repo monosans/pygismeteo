@@ -1,6 +1,7 @@
 # pygismeteo
 
-[![Build Status](https://github.com/monosans/pygismeteo/workflows/test/badge.svg?branch=main&event=push)](https://github.com/monosans/pygismeteo/actions?query=workflow%3Atest)
+[![test](https://github.com/monosans/pygismeteo/actions/workflows/test.yml/badge.svg?branch=main&event=push)](https://github.com/monosans/pygismeteo/actions/workflows/test.yml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/monosans/pygismeteo/main.svg)](https://results.pre-commit.ci/latest/github/monosans/pygismeteo/main)
 [![codecov](https://codecov.io/gh/monosans/pygismeteo/branch/main/graph/badge.svg)](https://codecov.io/gh/monosans/pygismeteo)
 
 Обёртка для [Gismeteo API](https://gismeteo.ru/api/).

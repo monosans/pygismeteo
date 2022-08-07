@@ -21,7 +21,7 @@
 
 ## Возвращаемый объект
 
-Оба метода возвращают `List[pygismeteo_base.models.step24.ModelItem]`.
+Оба метода возвращают `list[pygismeteo_base.models.step24.ModelItem]`.
 
 ## Пример
 
@@ -30,9 +30,9 @@
 ```python
 from pygismeteo import Gismeteo
 
-gm = Gismeteo()
-search_results = gm.search.by_query("Москва")
+gismeteo = Gismeteo()
+search_results = gismeteo.search.by_query("Москва")
 city_id = search_results[0].id
-step24 = gm.step24.by_id(city_id, days=3)
+step24 = gismeteo.step24.by_id(city_id, days=3)
 print(step24[2].temperature.air.avg.c)
 ```

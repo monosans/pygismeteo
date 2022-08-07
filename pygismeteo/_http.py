@@ -16,8 +16,8 @@ class RequestsClient(BaseHttpClient):
         self.session = session
 
     def get_response(self, endpoint: str, *, params: Params = None) -> Any:
-        r = self._get_json(endpoint, params=params)
-        return r["response"]
+        response = self._get_json(endpoint, params=params)
+        return response["response"]
 
     def _get_json(self, endpoint: str, *, params: Params = None) -> Any:
         if isinstance(self.session, Session):
@@ -33,6 +33,6 @@ class RequestsClient(BaseHttpClient):
             f"https://api.gismeteo.net/v2/{endpoint}/",
             params=params,
             headers=headers,
-        ) as r:
-            r.raise_for_status()
-            return r.json()
+        ) as response:
+            response.raise_for_status()
+            return response.json()

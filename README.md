@@ -1,6 +1,6 @@
 # pygismeteo
 
-[![test](https://github.com/monosans/pygismeteo/actions/workflows/test.yml/badge.svg?branch=main&event=push)](https://github.com/monosans/pygismeteo/actions/workflows/test.yml)
+[![CI](https://github.com/monosans/pygismeteo/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/monosans/pygismeteo/actions/workflows/ci.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/monosans/pygismeteo/main.svg)](https://results.pre-commit.ci/latest/github/monosans/pygismeteo/main)
 [![codecov](https://codecov.io/gh/monosans/pygismeteo/branch/main/graph/badge.svg)](https://codecov.io/gh/monosans/pygismeteo)
 
@@ -23,10 +23,10 @@ python -m pip install -U pygismeteo
 ```python
 from pygismeteo import Gismeteo
 
-gm = Gismeteo()
-search_results = gm.search.by_query("Москва")
+gismeteo = Gismeteo()
+search_results = gismeteo.search.by_query("Москва")
 city_id = search_results[0].id
-current = gm.current.by_id(city_id)
+current = gismeteo.current.by_id(city_id)
 print(current.temperature.air.c)
 ```
 

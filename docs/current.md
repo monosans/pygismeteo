@@ -28,9 +28,9 @@
 ```python
 from pygismeteo import Gismeteo
 
-gm = Gismeteo()
-search_results = gm.search.by_query("Москва")
+gismeteo = Gismeteo()
+search_results = gismeteo.search.by_query("Москва")
 city_id = search_results[0].id
-current = gm.current.by_id(city_id)
+current = gismeteo.current.by_id(city_id)
 print(current.temperature.air.c)
 ```

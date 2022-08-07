@@ -2,7 +2,7 @@
 
 Классу `Gismeteo` можно передать экземпляр `requests.Session`.
 
-Если его не передать, то для каждого запроса будет создаваться новый `requests.Session`, что понижает производительность.
+Если его не передать, то для каждого запроса будет создаваться новый `requests.Session`.
 
 ## Пример
 
@@ -12,8 +12,8 @@
 from pygismeteo import Gismeteo
 from requests import Session
 
-with Session() as s:
-    gm = Gismeteo(session=s)
-    current = gm.current.by_id(4368)
+with Session() as session:
+    gismeteo = Gismeteo(session=session)
+    current = gismeteo.current.by_id(4368)
 print(current.temperature.air.c)
 ```

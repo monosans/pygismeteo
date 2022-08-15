@@ -5,7 +5,7 @@ from typing import Any, List
 from pygismeteo_base import models, search
 from pygismeteo_base.types import Params, SearchLimit
 
-from pygismeteo._http import RequestsClient
+from ._http import RequestsClient
 
 
 class Search(search.Search):

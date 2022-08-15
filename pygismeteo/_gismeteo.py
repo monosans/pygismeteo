@@ -6,9 +6,9 @@ from pygismeteo_base.types import Lang
 from pygismeteo_base.validators import Settings
 from requests import Session
 
-from pygismeteo._http import RequestsClient
-from pygismeteo._periods import Current, Step3, Step6, Step24
-from pygismeteo._search import Search
+from ._http import RequestsClient
+from ._periods import Current, Step3, Step6, Step24
+from ._search import Search
 
 
 class Gismeteo:

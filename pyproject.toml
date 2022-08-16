@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pygismeteo"
-version = "5.0.1"
+version = "5.0.2"
 description = "Wrapper for Gismeteo API"
 authors = ["monosans <hsyqixco@protonmail.com>"]
 license = "MIT"

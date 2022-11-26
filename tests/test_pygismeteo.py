@@ -5,9 +5,10 @@ from requests import Session
 from pygismeteo import Gismeteo
 
 
-def test_everything() -> None:
+def test_pygismeteo() -> None:
     with Session() as session:
         gismeteo = Gismeteo(session=session)
+        assert gismeteo.session is session
         gismeteo.current.by_id(4368)
         gismeteo.current.by_coordinates(54.35, 52.52)
 
@@ -27,7 +28,6 @@ def test_everything() -> None:
     gismeteo.lang = "en"
     assert gismeteo.lang == "en"
 
-    assert isinstance(gismeteo.session, Session)
     gismeteo.session = None
     assert gismeteo.session is None
 

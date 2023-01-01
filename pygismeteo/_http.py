@@ -1,19 +1,14 @@
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from pygismeteo_base.http import BaseHttpClient
 from pygismeteo_base.types import Params
-from pygismeteo_base.validators import Settings
 from requests import Session
 
 
-class RequestsClient(BaseHttpClient):
-    __slots__ = ("session",)
-
-    def __init__(self, session: Optional[Session], settings: Settings) -> None:
-        super().__init__(settings)
-        self.session = session
+class RequestsClient(BaseHttpClient[Session]):
+    __slots__ = ()
 
     def get_response(self, endpoint: str, *, params: Params = None) -> Any:
         response = self._get_json(endpoint, params=params)

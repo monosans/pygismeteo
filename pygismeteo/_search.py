@@ -2,17 +2,17 @@ from __future__ import annotations
 
 from typing import Any, List
 
-from pygismeteo_base import models, search
+from pygismeteo_base import models
+from pygismeteo_base.search import SearchBase
 from pygismeteo_base.types import Params, SearchLimit
 
 from ._http import RequestsClient
 
 
-class Search(search.Search):
-    __slots__ = ("_session",)
+class Search(SearchBase[RequestsClient]):
+    """Поиск."""
 
-    def __init__(self, session: RequestsClient) -> None:
-        self._session = session
+    __slots__ = ()
 
     def by_coordinates(
         self, latitude: float, longitude: float, limit: SearchLimit

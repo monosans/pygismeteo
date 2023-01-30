@@ -49,7 +49,8 @@ class Search(SearchBase[RequestsClient]):
         """
         params = self._get_params_by_query(query)
         response = self._get_response(params)
-        model = models.search_by_query.Model.parse_obj(response["items"])
+        items = response.get("items", [])
+        model = models.search_by_query.Model.parse_obj(items)
         return model.__root__
 
     def _get_response(self, params: Params) -> Any:

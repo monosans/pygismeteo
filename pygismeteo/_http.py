@@ -20,14 +20,10 @@ class RequestsClient(BaseHttpClient[Session]):
         with Session() as session:
             return self._fetch(endpoint, params=params, session=session)
 
-    def _fetch(
-        self, endpoint: str, *, params: Params, session: Session
-    ) -> Any:
+    def _fetch(self, endpoint: str, *, params: Params, session: Session) -> Any:
         params, headers = self._get_params_and_headers(params)
         with session.get(
-            f"https://api.gismeteo.net/v2/{endpoint}/",
-            params=params,
-            headers=headers,
+            f"https://api.gismeteo.net/v2/{endpoint}/", params=params, headers=headers
         ) as response:
             response.raise_for_status()
             return response.json()

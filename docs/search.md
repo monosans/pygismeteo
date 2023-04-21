@@ -8,7 +8,7 @@
 
 - query (str) - город, район, область, страна или аэропорт.
 
-Возвращает `list[pygismeteo_base.models.search_by_query.ModelItem]`.
+Возвращает `list[pygismeteo.models.search_by_query.ModelItem]`.
 
 ## Метод by_coordinates
 
@@ -20,7 +20,7 @@
 - longitude (float) - долгота (от -180 до 180).
 - limit (int) - ограничение количества (от 1 до 36).
 
-Возвращает `list[pygismeteo_base.models.search_by_coordinates.ModelItem]`.
+Возвращает `list[pygismeteo.models.search_by_coordinates.ModelItem]`.
 
 ## Метод by_ip
 
@@ -30,17 +30,17 @@
 
 ip (str) - IP-адрес.
 
-Возвращает `pygismeteo_base.models.search_by_ip.Model`.
+Возвращает `pygismeteo.models.search_by_ip.Model`.
 
 ## Пример
 
 Выводит ID Москвы.
 
 ```python
-from pygismeteo import Gismeteo
+import pygismeteo
 
-gismeteo = Gismeteo()
-search_results = gismeteo.search.by_query("Москва")
+gm = pygismeteo.Gismeteo()
+search_results = gm.search.by_query("Москва")
 city_id = search_results[0].id
 print(city_id)
 ```

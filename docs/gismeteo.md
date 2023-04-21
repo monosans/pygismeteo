@@ -3,7 +3,9 @@
 Всё взаимодействие с библиотекой осуществляется через класс Gismeteo:
 
 ```python
-from pygismeteo import Gismeteo
+import pygismeteo
+
+gm = pygismeteo.Gismeteo()
 ```
 
 ## Создание экземпляра класса Gismeteo

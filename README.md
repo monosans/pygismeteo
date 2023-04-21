@@ -22,12 +22,12 @@ python -m pip install -U pygismeteo
 ## Пример, выводящий температуру в Москве сейчас
 
 ```python
-from pygismeteo import Gismeteo
+import pygismeteo
 
-gismeteo = Gismeteo()
-search_results = gismeteo.search.by_query("Москва")
+gm = pygismeteo.Gismeteo()
+search_results = gm.search.by_query("Москва")
 city_id = search_results[0].id
-current = gismeteo.current.by_id(city_id)
+current = gm.current.by_id(city_id)
 print(current.temperature.air.c)
 ```
 

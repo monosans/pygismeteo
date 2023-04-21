@@ -776,14 +776,14 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 name = "pygismeteo-base"
-version = "4.1.0"
+version = "4.3.0"
 description = "Base for pygismeteo and aiopygismeteo"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "pygismeteo_base-4.1.0-py3-none-any.whl", hash = "sha256:4bf60f9b6a7c2293ab4870698997715742b194c8b8b94beed22099a71aa2cef3"},
-    {file = "pygismeteo_base-4.1.0.tar.gz", hash = "sha256:7dda03e6647e728a0b244c069f57c837fa1b8f71af626022b29d51be19941efb"},
+    {file = "pygismeteo_base-4.3.0-py3-none-any.whl", hash = "sha256:9e5276585e1535be546fa5d46805522e7bf590a4d23ba19718e5a4ab2833383c"},
+    {file = "pygismeteo_base-4.3.0.tar.gz", hash = "sha256:843a4dd96877cd9b3c0afac615cba4fd046c6ad7b098a60b68a38bf6ee4f7391"},
 ]
 
 [package.dependencies]
@@ -1093,14 +1093,14 @@ files = [
 
 [[package]]
 name = "setuptools"
-version = "67.6.1"
+version = "67.7.1"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "setuptools-67.6.1-py3-none-any.whl", hash = "sha256:e728ca814a823bf7bf60162daf9db95b93d532948c4c0bea762ce62f60189078"},
-    {file = "setuptools-67.6.1.tar.gz", hash = "sha256:257de92a9d50a60b8e22abfcbb771571fde0dbf3ec234463212027a4eeecbe9a"},
+    {file = "setuptools-67.7.1-py3-none-any.whl", hash = "sha256:6f0839fbdb7e3cfef1fc38d7954f5c1c26bf4eebb155a55c9bf8faf997b9fb67"},
+    {file = "setuptools-67.7.1.tar.gz", hash = "sha256:bb16732e8eb928922eabaa022f881ae2b7cdcfaf9993ef1f5e841a96d32b8e0c"},
 ]
 
 [package.extras]
@@ -1303,4 +1303,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7"
-content-hash = "9824a155a9987614ac20da2a5964590e7cd1304a4ddfd9d3ff7e60d4052c9bfc"
+content-hash = "84670882264f137e3c12d187123ad4d8ff9baccb8fdfaff227e3b44c424b9be7"

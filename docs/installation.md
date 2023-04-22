@@ -3,5 +3,5 @@
 Установить актуальную версию можно следующей командой:
 
 ```bash
-python -m pip install -U pygismeteo
+python -m pip install -U pygismeteo pygismeteo-base
 ```

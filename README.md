@@ -12,7 +12,7 @@
 ## Установка
 
 ```bash
-python -m pip install -U pygismeteo
+python -m pip install -U pygismeteo pygismeteo-base
 ```
 
 ## Документация

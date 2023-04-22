@@ -8,7 +8,7 @@
 
 - id (int ≥ 1): ID географического объект. Получить можно через [Поиск](search.md).
 
-Возвращает `aiopygismeteo.models.current.Model`.
+Возвращает `pygismeteo.models.current.Model`.
 
 ## Метод by_coordinates
 
@@ -19,7 +19,7 @@
 - latitude (-90 ≤ float ≤ 90): Широта.
 - longitude (-180 ≤ float ≤ 180): Долгота.
 
-Возвращает `aiopygismeteo.models.current.Model`.
+Возвращает `pygismeteo.models.current.Model`.
 
 ## Пример
 

@@ -38,6 +38,6 @@ repos:
           - --scripts-are-modules
         additional_dependencies:
           - pydantic<2
-          - pygismeteo-base>=4.4,<5
+          - pygismeteo-base<5
           - pytest<8
           - types-requests<3

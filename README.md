@@ -1,7 +1,7 @@
 # pygismeteo
 
 [![CI](https://github.com/monosans/pygismeteo/actions/workflows/ci.yml/badge.svg)](https://github.com/monosans/pygismeteo/actions/workflows/ci.yml)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/pygismeteo?logo=pypi)](https://pypi.org/project/pygismeteo/)
+[![Downloads](https://static.pepy.tech/badge/pygismeteo)](https://pepy.tech/project/pygismeteo)
 
 Обёртка для [Gismeteo API](https://gismeteo.ru/api/).
 

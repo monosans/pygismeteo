@@ -35,4 +35,4 @@ def test_pygismeteo() -> None:
 
     assert gm.token is None
     gm.token = ""
-    assert gm.token == ""  # noqa: PLC1901
+    assert gm.token == ""

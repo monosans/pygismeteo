@@ -12,7 +12,9 @@ class Current(CurrentBase[RequestsClient]):
 
     __slots__ = ()
 
-    def by_coordinates(self, latitude: float, longitude: float) -> models.current.Model:
+    def by_coordinates(
+        self, latitude: float, longitude: float
+    ) -> models.current.Model:
         """По координатам.
 
         Args:
@@ -34,6 +36,8 @@ class Current(CurrentBase[RequestsClient]):
         url, params = self._get_params_by_id(id)
         return self._get_result(url, params=params)
 
-    def _get_result(self, url: str, *, params: Params = None) -> models.current.Model:
+    def _get_result(
+        self, url: str, *, params: Params = None
+    ) -> models.current.Model:
         response = self._session.get_response(url, params=params)
         return models.current.Model.parse_obj(response)

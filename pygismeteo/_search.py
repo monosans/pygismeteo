@@ -40,9 +40,15 @@ class Search(SearchBase[RequestsClient]):
 
     @overload
     def by_coordinates(
-        self, latitude: float, longitude: float, limit: SearchLimit, *, as_list: bool
+        self,
+        latitude: float,
+        longitude: float,
+        limit: SearchLimit,
+        *,
+        as_list: bool,
     ) -> Union[
-        List[models.search_by_coordinates.ModelItem], models.search_by_coordinates.Model
+        List[models.search_by_coordinates.ModelItem],
+        models.search_by_coordinates.Model,
     ]:
         ...
 
@@ -54,7 +60,8 @@ class Search(SearchBase[RequestsClient]):
         *,
         as_list: bool = True,
     ) -> Union[
-        List[models.search_by_coordinates.ModelItem], models.search_by_coordinates.Model
+        List[models.search_by_coordinates.ModelItem],
+        models.search_by_coordinates.Model,
     ]:
         """По координатам.
 
@@ -102,12 +109,16 @@ class Search(SearchBase[RequestsClient]):
     @overload
     def by_query(
         self, query: str, *, as_list: bool
-    ) -> Union[List[models.search_by_query.ModelItem], models.search_by_query.Model]:
+    ) -> Union[
+        List[models.search_by_query.ModelItem], models.search_by_query.Model
+    ]:
         ...
 
     def by_query(
         self, query: str, *, as_list: bool = True
-    ) -> Union[List[models.search_by_query.ModelItem], models.search_by_query.Model]:
+    ) -> Union[
+        List[models.search_by_query.ModelItem], models.search_by_query.Model
+    ]:
         """По строке.
 
         Args:

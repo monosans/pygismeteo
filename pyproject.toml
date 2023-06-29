@@ -6,7 +6,7 @@ authors = ["monosans <hsyqixco@protonmail.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/monosans/pygismeteo"
-documentation = "https://pygismeteo.readthedocs.io"
+documentation = "https://pygismeteo.readthedocs.io/"
 classifiers = [
     "Environment :: Web Environment",
     "Framework :: Pydantic :: 1",

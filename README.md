@@ -17,18 +17,6 @@ python -m pip install -U pygismeteo pygismeteo-base
 
 <https://pygismeteo.readthedocs.io/>
 
-## Пример, выводящий температуру в Москве сейчас
-
-```python
-import pygismeteo
-
-gm = pygismeteo.Gismeteo()
-search_results = gm.search.by_query("Москва")
-city_id = search_results[0].id
-current = gm.current.by_id(city_id)
-print(current.temperature.air.c)
-```
-
 ## License / Лицензия
 
 [MIT](https://github.com/monosans/pygismeteo/blob/main/LICENSE)

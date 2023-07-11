@@ -1,4 +1,4 @@
-# pygismeteo
+# Главная
 
 Добро пожаловать в документацию pygismeteo, обёртки для [Gismeteo API](https://gismeteo.ru/api/) на Python!
 

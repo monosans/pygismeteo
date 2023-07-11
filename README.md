@@ -15,7 +15,7 @@ python -m pip install -U pygismeteo pygismeteo-base
 
 ## Документация
 
-<https://pygismeteo.readthedocs.io/>
+<https://pygismeteo.readthedocs.io>
 
 ## License / Лицензия
 

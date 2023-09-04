@@ -41,3 +41,4 @@ repos:
           - pygismeteo-base<5
           - pytest<8
           - types-requests<3
+          - typing-extensions<5

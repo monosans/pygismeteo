@@ -32,8 +32,7 @@ class StepN(
         days: TDays,
         *,
         as_list: Literal[True] = ...,
-    ) -> List[TStepNModelItem]:
-        ...
+    ) -> List[TStepNModelItem]: ...
 
     @overload
     def by_coordinates(
@@ -43,14 +42,12 @@ class StepN(
         days: TDays,
         *,
         as_list: Literal[False],
-    ) -> TStepNModel:
-        ...
+    ) -> TStepNModel: ...
 
     @overload
     def by_coordinates(
         self, latitude: float, longitude: float, days: TDays, *, as_list: bool
-    ) -> Union[List[TStepNModelItem], TStepNModel]:
-        ...
+    ) -> Union[List[TStepNModelItem], TStepNModel]: ...
 
     def by_coordinates(
         self,
@@ -89,20 +86,17 @@ class StepN(
         days: TDays,
         *,
         as_list: Literal[True] = ...,
-    ) -> List[TStepNModelItem]:
-        ...
+    ) -> List[TStepNModelItem]: ...
 
     @overload
     def by_id(
         self, id: int, days: TDays, *, as_list: Literal[False]  # noqa: A002
-    ) -> TStepNModel:
-        ...
+    ) -> TStepNModel: ...
 
     @overload
     def by_id(
         self, id: int, days: TDays, *, as_list: bool  # noqa: A002
-    ) -> Union[List[TStepNModelItem], TStepNModel]:
-        ...
+    ) -> Union[List[TStepNModelItem], TStepNModel]: ...
 
     def by_id(
         self, id: int, days: TDays, *, as_list: bool = True  # noqa: A002
@@ -128,20 +122,17 @@ class StepN(
     @overload
     def _get_result(
         self, url: str, *, params: Params, as_list: Literal[True]
-    ) -> List[TStepNModelItem]:
-        ...
+    ) -> List[TStepNModelItem]: ...
 
     @overload
     def _get_result(
         self, url: str, *, params: Params, as_list: Literal[False]
-    ) -> TStepNModel:
-        ...
+    ) -> TStepNModel: ...
 
     @overload
     def _get_result(
         self, url: str, *, params: Params, as_list: bool
-    ) -> Union[List[TStepNModelItem], TStepNModel]:
-        ...
+    ) -> Union[List[TStepNModelItem], TStepNModel]: ...
 
     def _get_result(
         self, url: str, *, params: Params, as_list: bool

@@ -21,7 +21,6 @@ theme:
     - navigation.footer
     - navigation.top
     - toc.follow
-  font: false
   icon:
     repo: fontawesome/brands/github
     logo: fontawesome/solid/droplet

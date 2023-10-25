@@ -28,7 +28,7 @@ class RequestsClient(BaseHttpClient[Session]):
         return response.json()
 
     def _fetch(
-        self,
+        self,  # noqa: PLR6301
         endpoint: str,
         *,
         params: Params,

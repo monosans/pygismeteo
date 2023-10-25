@@ -1,4 +1,5 @@
 """Обёртка для Gismeteo API."""
+
 from __future__ import annotations
 
 from pygismeteo_base import models

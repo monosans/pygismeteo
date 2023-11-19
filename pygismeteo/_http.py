@@ -27,8 +27,8 @@ class RequestsClient(BaseHttpClient[Session]):
         response.raise_for_status()
         return response.json()
 
-    def _fetch(
-        self,  # noqa: PLR6301
+    def _fetch(  # noqa: PLR6301
+        self,
         endpoint: str,
         *,
         params: Params,

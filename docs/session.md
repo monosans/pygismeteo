@@ -13,7 +13,7 @@ import pygismeteo
 from requests import Session
 
 with Session() as session:
-    gm = pygismeteo.Gismeteo(session=session)
+    gm = pygismeteo.Gismeteo(token="56b30cb255.3443075", session=session)
     current = gm.current.by_id(4368)
 print(current.temperature.air.c)
 ```

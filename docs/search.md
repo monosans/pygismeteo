@@ -43,7 +43,7 @@
 ```python
 import pygismeteo
 
-gm = pygismeteo.Gismeteo()
+gm = pygismeteo.Gismeteo(token="56b30cb255.3443075")
 search_results = gm.search.by_query("Москва")
 city_id = search_results[0].id
 print(city_id)

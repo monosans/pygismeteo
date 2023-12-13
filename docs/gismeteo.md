@@ -5,13 +5,16 @@
 ```python
 import pygismeteo
 
-gm = pygismeteo.Gismeteo()
+gm = pygismeteo.Gismeteo(token="56b30cb255.3443075")
 ```
 
 ## Создание экземпляра класса Gismeteo
 
-При инициализации класс Gismeteo принимает 3 необязательных аргумента:
+При инициализации класс Gismeteo принимает 1 обязательный именованный аргумент:
+
+- token: X-Gismeteo-Token. Запросить можно по электронной почте <mailto:b2b@gismeteo.ru>.
+
+и 2 необязательных именованных аргумента:
 
 - lang: Язык. По умолчанию "ru".
-- token: X-Gismeteo-Token, если используемый по умолчанию перестал работать.
 - session: Экземпляр requests.Session. Подробнее см. [Свой экземпляр requests.Session](session.md).

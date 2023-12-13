@@ -16,6 +16,11 @@ def http_session() -> Iterator[Session]:
 
 
 @pytest.fixture()
+def gismeteo_token() -> str:
+    return "56b30cb255.3443075"
+
+
+@pytest.fixture()
 def location_id() -> int:
     # Moscow
     return 4368
@@ -38,8 +43,8 @@ def ipv4_address() -> str:
 
 
 @pytest.fixture()
-def gismeteo(http_session: Session) -> Gismeteo:
-    return Gismeteo(session=http_session)
+def gismeteo(gismeteo_token: str, http_session: Session) -> Gismeteo:
+    return Gismeteo(token=gismeteo_token, session=http_session)
 
 
 @pytest.fixture()

@@ -37,7 +37,6 @@ typing-extensions = ">=4.4"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "1.8.0"
-pydantic = "2.6.1"
 pytest = "8.0.1"
 ruff = "0.2.2"
 types-requests = "2.31.0.20240218"

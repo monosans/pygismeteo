@@ -5,7 +5,7 @@ from typing import List, Union
 
 from pygismeteo_base import models, types
 from pygismeteo_base.search import SearchBase
-from typing_extensions import Any, Literal, overload
+from typing_extensions import Literal, overload
 
 from ._http import RequestsClient
 

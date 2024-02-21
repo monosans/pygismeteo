@@ -3,9 +3,8 @@ from __future__ import annotations
 from ipaddress import IPv4Address
 from typing import List, Union
 
-from pygismeteo_base import models
+from pygismeteo_base import models, types
 from pygismeteo_base.search import SearchBase
-from pygismeteo_base.types import Params, SearchLimit
 from typing_extensions import Any, Literal, overload
 
 from ._http import RequestsClient
@@ -19,9 +18,9 @@ class Search(SearchBase[RequestsClient]):
     @overload
     def by_coordinates(
         self,
-        latitude: float,
-        longitude: float,
-        limit: SearchLimit,
+        latitude: types.Latitude,
+        longitude: types.Longitude,
+        limit: types.SearchLimit,
         *,
         as_list: Literal[True] = ...,
     ) -> List[models.search_by_coordinates.ModelItem]: ...
@@ -29,9 +28,9 @@ class Search(SearchBase[RequestsClient]):
     @overload
     def by_coordinates(
         self,
-        latitude: float,
-        longitude: float,
-        limit: SearchLimit,
+        latitude: types.Latitude,
+        longitude: types.Longitude,
+        limit: types.SearchLimit,
         *,
         as_list: Literal[False],
     ) -> models.search_by_coordinates.Model: ...
@@ -39,9 +38,9 @@ class Search(SearchBase[RequestsClient]):
     @overload
     def by_coordinates(
         self,
-        latitude: float,
-        longitude: float,
-        limit: SearchLimit,
+        latitude: types.Latitude,
+        longitude: types.Longitude,
+        limit: types.SearchLimit,
         *,
         as_list: bool,
     ) -> Union[
@@ -51,9 +50,9 @@ class Search(SearchBase[RequestsClient]):
 
     def by_coordinates(
         self,
-        latitude: float,
-        longitude: float,
-        limit: SearchLimit,
+        latitude: types.Latitude,
+        longitude: types.Longitude,
+        limit: types.SearchLimit,
         *,
         as_list: bool = True,
     ) -> Union[
@@ -70,15 +69,17 @@ class Search(SearchBase[RequestsClient]):
             limit (1 ≤ int ≤ 36):
                 Ограничение количества результатов.
             as_list (bool):
-                Вернуть Model.__root__ (list[ModelItem]) вместо Model.
+                Вернуть Model.root (list[ModelItem]) вместо Model.
                 По умолчанию True.
         """
         params = self._get_params_by_coordinates(
             latitude=latitude, longitude=longitude, limit=limit
         )
         response = self._get_response(params)
-        model = models.search_by_coordinates.Model.parse_obj(response)
-        return model.__root__ if as_list else model
+        model = models.search_by_coordinates.Response.model_validate_json(
+            response
+        )
+        return model.response.root if as_list else model.response
 
     def by_ip(self, ip: Union[IPv4Address, str]) -> models.search_by_ip.Model:
         """По IPv4-адресу.
@@ -89,7 +90,8 @@ class Search(SearchBase[RequestsClient]):
         """
         params = self._get_params_by_ip(ip)
         response = self._get_response(params)
-        return models.search_by_ip.Model.parse_obj(response)
+        model = models.search_by_ip.Response.model_validate_json(response)
+        return model.response
 
     @overload
     def by_query(
@@ -119,14 +121,13 @@ class Search(SearchBase[RequestsClient]):
             query (str):
                 Город, район, область, страна или аэропорт.
             as_list (bool):
-                Вернуть Model.__root__ (list[ModelItem]) вместо Model.
+                Вернуть Model.root (list[ModelItem]) вместо Model.
                 По умолчанию True.
         """
         params = self._get_params_by_query(query)
         response = self._get_response(params)
-        items = response.get("items", [])
-        model = models.search_by_query.Model.parse_obj(items)
-        return model.__root__ if as_list else model
+        model = models.search_by_query.Response.model_validate_json(response)
+        return model.response.items.root if as_list else model.response.items
 
-    def _get_response(self, params: Params) -> Any:
-        return self._session.get_response(self._endpoint, params=params)
+    def _get_response(self, params: types.Params) -> str:
+        return self._session.get_response(self._endpoint(), params=params)

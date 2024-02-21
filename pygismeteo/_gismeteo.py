@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from typing import Optional
+from typing import Final, Optional
 
 from pygismeteo_base.types import Lang
 from pygismeteo_base.validators import Settings
 from requests import Session
+from typing_extensions import final
 
 from ._current import Current
 from ._http import RequestsClient
@@ -12,53 +13,51 @@ from ._search import Search
 from ._step_n import Step3, Step6, Step24
 
 
+@final
 class Gismeteo:
     """Обёртка для Gismeteo API."""
 
     __slots__ = (
-        "_current",
-        "_search",
         "_session",
         "_settings",
-        "_step3",
-        "_step6",
-        "_step24",
+        "current",
+        "search",
+        "step3",
+        "step6",
+        "step24",
     )
 
     def __init__(
         self,
         *,
         lang: Optional[Lang] = None,
-        token: str,
         session: Optional[Session] = None,
+        token: str,
     ) -> None:
         """Обёртка для Gismeteo API.
 
         Args:
             lang:
                 Язык. По умолчанию "ru".
-            token:
-                X-Gismeteo-Token.
-                Запросить можно по электронной почте b2b@gismeteo.ru.
             session:
                 Экземпляр requests.Session.
                 По умолчанию для каждого запроса создаётся новый экземпляр.
+            token:
+                X-Gismeteo-Token.
+                Запросить можно по электронной почте b2b@gismeteo.ru.
         """
         self._settings = Settings(lang=lang, token=token)
         self._session = RequestsClient(session, self._settings)
-        self._current = Current(self._session)
-        self._step3 = Step3(self._session)
-        self._step6 = Step6(self._session)
-        self._step24 = Step24(self._session)
-        self._search = Search(self._session)
-
-    @property
-    def session(self) -> Optional[Session]:
-        return self._session.session
-
-    @session.setter
-    def session(self, session: Optional[Session]) -> None:
-        self._session.session = session
+        self.current: Final = Current(self._session)
+        """Текущая погода."""
+        self.search: Final = Search(self._session)
+        """Поиск."""
+        self.step3: Final = Step3(self._session)
+        """Погода с шагом 3 часа."""
+        self.step6: Final = Step6(self._session)
+        """Погода с шагом 6 часов."""
+        self.step24: Final = Step24(self._session)
+        """Погода с шагом 24 часа."""
 
     @property
     def lang(self) -> Optional[Lang]:
@@ -70,6 +69,14 @@ class Gismeteo:
         self._settings.lang = lang
 
     @property
+    def session(self) -> Optional[Session]:
+        return self._session.session
+
+    @session.setter
+    def session(self, session: Optional[Session]) -> None:
+        self._session.session = session
+
+    @property
     def token(self) -> str:
         """X-Gismeteo-Token."""
         return self._settings.token
@@ -77,28 +84,3 @@ class Gismeteo:
     @token.setter
     def token(self, token: str) -> None:
         self._settings.token = token
-
-    @property
-    def current(self) -> Current:
-        """Текущая погода."""
-        return self._current
-
-    @property
-    def step3(self) -> Step3:
-        """Погода с шагом 3 часа."""
-        return self._step3
-
-    @property
-    def step6(self) -> Step6:
-        """Погода с шагом 6 часов."""
-        return self._step6
-
-    @property
-    def step24(self) -> Step24:
-        """Погода с шагом 24 часа."""
-        return self._step24
-
-    @property
-    def search(self) -> Search:
-        """Поиск."""
-        return self._search

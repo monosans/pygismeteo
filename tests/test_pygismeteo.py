@@ -32,10 +32,10 @@ def test_step3_by_id(
 ) -> None:
     r = gismeteo.step3.by_id(location_id, days=10, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.step3.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -45,10 +45,10 @@ def test_step3_by_coordinates(
 ) -> None:
     r = gismeteo.step3.by_coordinates(*coordinates, days=10, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.step3.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -58,10 +58,10 @@ def test_step6_by_id(
 ) -> None:
     r = gismeteo.step6.by_id(location_id, days=10, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.step6.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -71,10 +71,10 @@ def test_step6_by_coordinates(
 ) -> None:
     r = gismeteo.step6.by_coordinates(*coordinates, days=10, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.step6.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -84,10 +84,10 @@ def test_step24_by_id(
 ) -> None:
     r = gismeteo.step24.by_id(location_id, days=10, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.step24.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -97,10 +97,10 @@ def test_step24_by_coordinates(
 ) -> None:
     r = gismeteo.step24.by_coordinates(*coordinates, days=10, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.step24.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -111,10 +111,10 @@ def test_search_by_query(
 ) -> None:
     r = gismeteo.search.by_query(search_query, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.search_by_query.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)
@@ -125,10 +125,10 @@ def test_search_by_coordinates(
 ) -> None:
     r = gismeteo.search.by_coordinates(*coordinates, limit=36, as_list=as_list)
     if as_list:
-        assert isinstance(r, list)
+        assert isinstance(r, tuple)
     else:
         assert isinstance(r, models.search_by_coordinates.Model)
-        assert isinstance(r.root, list)
+        assert isinstance(r.root, tuple)
 
 
 @pytest.mark.xfail(raises=HTTPError)

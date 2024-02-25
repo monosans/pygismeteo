@@ -11,7 +11,7 @@
 
 и 1 необязательный именованный аргумент:
 
-- as_list (bool): Вернуть `list[pygismeteo.models.step3.ModelItem]` вместо `pygismeteo.models.step3.Model`. По умолчанию True.
+- as_list (bool): Вернуть `tuple[pygismeteo.models.step3.ModelItem, ...]` вместо `pygismeteo.models.step3.Model`. По умолчанию True.
 
 ## Метод by_coordinates
 
@@ -19,13 +19,13 @@
 
 Принимает 3 обязательных аргумента:
 
-- latitude (-90 ≤ float ≤ 90): Широта.
-- longitude (-180 ≤ float ≤ 180): Долгота.
+- latitude (-90 ≤ int | float ≤ 90): Широта.
+- longitude (-180 ≤ int | float ≤ 180): Долгота.
 - days (1 ≤ int ≤ 10): Количество дней.
 
 и 1 необязательный именованный аргумент:
 
-- as_list (bool): Вернуть `list[pygismeteo.models.step3.ModelItem]` вместо `pygismeteo.models.step3.Model`. По умолчанию True.
+- as_list (bool): Вернуть `tuple[pygismeteo.models.step3.ModelItem, ...]` вместо `pygismeteo.models.step3.Model`. По умолчанию True.
 
 ## Длина возвращаемого списка
 

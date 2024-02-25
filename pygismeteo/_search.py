@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from ipaddress import IPv4Address
-from typing import List, Union
+from typing import Tuple, Union
 
 from pygismeteo_base import models, types
 from pygismeteo_base.search import SearchBase
@@ -23,7 +23,7 @@ class Search(SearchBase[RequestsClient]):
         limit: types.SearchLimit,
         *,
         as_list: Literal[True] = ...,
-    ) -> List[models.search_by_coordinates.ModelItem]: ...
+    ) -> Tuple[models.search_by_coordinates.ModelItem, ...]: ...
 
     @overload
     def by_coordinates(
@@ -44,7 +44,7 @@ class Search(SearchBase[RequestsClient]):
         *,
         as_list: bool,
     ) -> Union[
-        List[models.search_by_coordinates.ModelItem],
+        Tuple[models.search_by_coordinates.ModelItem, ...],
         models.search_by_coordinates.Model,
     ]: ...
 
@@ -56,20 +56,20 @@ class Search(SearchBase[RequestsClient]):
         *,
         as_list: bool = True,
     ) -> Union[
-        List[models.search_by_coordinates.ModelItem],
+        Tuple[models.search_by_coordinates.ModelItem, ...],
         models.search_by_coordinates.Model,
     ]:
         """По координатам.
 
         Args:
-            latitude (-90 ≤ float ≤ 90):
+            latitude (-90 ≤ int | float ≤ 90):
                 Широта.
-            longitude (-180 ≤ float ≤ 180):
+            longitude (-180 ≤ int | float ≤ 180):
                 Долгота.
             limit (1 ≤ int ≤ 36):
                 Ограничение количества результатов.
             as_list (bool):
-                Вернуть Model.root (list[ModelItem]) вместо Model.
+                Вернуть Model.root (tuple[ModelItem, ...]) вместо Model.
                 По умолчанию True.
         """
         params = self._get_params_by_coordinates(
@@ -96,7 +96,7 @@ class Search(SearchBase[RequestsClient]):
     @overload
     def by_query(
         self, query: str, *, as_list: Literal[True] = ...
-    ) -> List[models.search_by_query.ModelItem]: ...
+    ) -> Tuple[models.search_by_query.ModelItem, ...]: ...
 
     @overload
     def by_query(
@@ -107,13 +107,15 @@ class Search(SearchBase[RequestsClient]):
     def by_query(
         self, query: str, *, as_list: bool
     ) -> Union[
-        List[models.search_by_query.ModelItem], models.search_by_query.Model
+        Tuple[models.search_by_query.ModelItem, ...],
+        models.search_by_query.Model,
     ]: ...
 
     def by_query(
         self, query: str, *, as_list: bool = True
     ) -> Union[
-        List[models.search_by_query.ModelItem], models.search_by_query.Model
+        Tuple[models.search_by_query.ModelItem, ...],
+        models.search_by_query.Model,
     ]:
         """По строке.
 
@@ -121,7 +123,7 @@ class Search(SearchBase[RequestsClient]):
             query (str):
                 Город, район, область, страна или аэропорт.
             as_list (bool):
-                Вернуть Model.root (list[ModelItem]) вместо Model.
+                Вернуть Model.root (tuple[ModelItem, ...]) вместо Model.
                 По умолчанию True.
         """
         params = self._get_params_by_query(query)

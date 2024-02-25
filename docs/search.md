@@ -10,7 +10,7 @@
 
 и 1 необязательный именованный аргумент:
 
-- as_list (bool): Вернуть `list[pygismeteo.models.search_by_query.ModelItem]` вместо `pygismeteo.models.search_by_query.Model`. По умолчанию True.
+- as_list (bool): Вернуть `tuple[pygismeteo.models.search_by_query.ModelItem, ...]` вместо `pygismeteo.models.search_by_query.Model`. По умолчанию True.
 
 ## Метод by_coordinates
 
@@ -18,13 +18,13 @@
 
 Принимает 3 обязательных аргумента:
 
-- latitude (-90 ≤ float ≤ 90): Широта.
-- longitude (-180 ≤ float ≤ 180): Долгота.
+- latitude (-90 ≤ int | float ≤ 90): Широта.
+- longitude (-180 ≤ int | float ≤ 180): Долгота.
 - limit (1 ≤ int ≤ 36): Ограничение количества результатов.
 
 и 1 необязательный именованный аргумент:
 
-- as_list (bool): Вернуть `list[pygismeteo.models.search_by_coordinates.ModelItem]` вместо `pygismeteo.models.search_by_coordinates_Model`. По умолчанию True.
+- as_list (bool): Вернуть `tuple[pygismeteo.models.search_by_coordinates.ModelItem, ...]` вместо `pygismeteo.models.search_by_coordinates_Model`. По умолчанию True.
 
 ## Метод by_ip
 

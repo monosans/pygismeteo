@@ -37,7 +37,7 @@ typing-extensions = ">=4.4"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "1.8.0"
-pytest = "8.0.1"
+pytest = "8.0.2"
 ruff = "0.2.2"
 types-requests = "2.31.0.20240218"
 
@@ -46,5 +46,5 @@ optional = true
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "1.5.3"
-mkdocs-material = "9.5.10"
+mkdocs-material = "9.5.11"
 mkdocs-minify-html-plugin = "0.2.1"

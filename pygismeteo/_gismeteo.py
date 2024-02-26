@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Final, Optional
 
+from pydantic import ConfigDict, validate_call
 from pygismeteo_base.types import Lang
 from pygismeteo_base.validators import Settings
 from requests import Session
@@ -27,6 +28,7 @@ class Gismeteo:
         "step24",
     )
 
+    @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
     def __init__(
         self,
         *,

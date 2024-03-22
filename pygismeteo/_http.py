@@ -38,5 +38,6 @@ class RequestsClient(BaseHttpClient[Session]):
             f"https://api.gismeteo.net/v2/{endpoint}/",
             params=params,
             headers=headers,
+            timeout=300,
         ) as response:
             return response

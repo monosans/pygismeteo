@@ -11,8 +11,8 @@ from ._http import RequestsClient
 
 
 class StepN(
-    Generic[types.TStepNDays, types.TStepNModel, types.TStepNModelItem],
     StepNABC[RequestsClient],
+    Generic[types.TStepNDays, types.TStepNModel, types.TStepNModelItem],
 ):
     __slots__ = ()
 

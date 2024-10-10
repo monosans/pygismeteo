@@ -39,7 +39,7 @@ include = ["pygismeteo"]
 
 [tool.uv]
 dev-dependencies = [
-  "mkdocs-material==9.5.39",
+  "mkdocs-material==9.5.40",
   "mkdocs-minify-html-plugin==0.2.3",
   "mypy==1.11.2",
   "pytest==8.3.3",

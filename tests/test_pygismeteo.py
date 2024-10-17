@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from ipaddress import IPv4Address
-from typing import Tuple, Type, Union
+from typing import Union
 
 import pydantic
 import pytest
@@ -19,7 +19,7 @@ def test_current_by_id(gismeteo_token: str, location_id: int) -> None:
 
 @pytest.mark.xfail(raises=HTTPError)
 def test_current_by_coordinates(
-    gismeteo: Gismeteo, coordinates: Tuple[float, float]
+    gismeteo: Gismeteo, coordinates: tuple[float, float]
 ) -> None:
     r = gismeteo.current.by_coordinates(*coordinates)
     assert isinstance(r, models.current.Model)
@@ -41,7 +41,7 @@ def test_step3_by_id(
 @pytest.mark.xfail(raises=HTTPError)
 @pytest.mark.parametrize("as_list", [True, False])
 def test_step3_by_coordinates(
-    gismeteo: Gismeteo, coordinates: Tuple[float, float], as_list: bool
+    gismeteo: Gismeteo, coordinates: tuple[float, float], as_list: bool
 ) -> None:
     r = gismeteo.step3.by_coordinates(*coordinates, days=10, as_list=as_list)
     if as_list:
@@ -67,7 +67,7 @@ def test_step6_by_id(
 @pytest.mark.xfail(raises=HTTPError)
 @pytest.mark.parametrize("as_list", [True, False])
 def test_step6_by_coordinates(
-    gismeteo: Gismeteo, coordinates: Tuple[float, float], as_list: bool
+    gismeteo: Gismeteo, coordinates: tuple[float, float], as_list: bool
 ) -> None:
     r = gismeteo.step6.by_coordinates(*coordinates, days=10, as_list=as_list)
     if as_list:
@@ -93,7 +93,7 @@ def test_step24_by_id(
 @pytest.mark.xfail(raises=HTTPError)
 @pytest.mark.parametrize("as_list", [True, False])
 def test_step24_by_coordinates(
-    gismeteo: Gismeteo, coordinates: Tuple[float, float], as_list: bool
+    gismeteo: Gismeteo, coordinates: tuple[float, float], as_list: bool
 ) -> None:
     r = gismeteo.step24.by_coordinates(*coordinates, days=10, as_list=as_list)
     if as_list:
@@ -121,7 +121,7 @@ def test_search_by_query(
 @pytest.mark.usefixtures("_pydantic_ignore_extra")
 @pytest.mark.parametrize("as_list", [True, False])
 def test_search_by_coordinates(
-    gismeteo: Gismeteo, coordinates: Tuple[float, float], as_list: bool
+    gismeteo: Gismeteo, coordinates: tuple[float, float], as_list: bool
 ) -> None:
     r = gismeteo.search.by_coordinates(*coordinates, limit=36, as_list=as_list)
     if as_list:
@@ -135,7 +135,7 @@ def test_search_by_coordinates(
 @pytest.mark.usefixtures("_pydantic_ignore_extra")
 @pytest.mark.parametrize("type_", [str, IPv4Address])
 def test_search_by_ip(
-    gismeteo: Gismeteo, ipv4_address: str, type_: Type[Union[str, IPv4Address]]
+    gismeteo: Gismeteo, ipv4_address: str, type_: type[Union[str, IPv4Address]]
 ) -> None:
     r = gismeteo.search.by_ip(type_(ipv4_address))
     assert isinstance(r, models.search_by_ip.Model)

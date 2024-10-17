@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from ipaddress import IPv4Address
-from typing import Tuple, Union
+from typing import Union
 
 from pygismeteo_base import models, types
 from pygismeteo_base.search import SearchBase
@@ -23,7 +23,7 @@ class Search(SearchBase[RequestsClient]):
         limit: types.SearchLimit,
         *,
         as_list: Literal[True] = ...,
-    ) -> Tuple[models.search_by_coordinates.ModelItem, ...]: ...
+    ) -> tuple[models.search_by_coordinates.ModelItem, ...]: ...
 
     @overload
     def by_coordinates(
@@ -44,7 +44,7 @@ class Search(SearchBase[RequestsClient]):
         *,
         as_list: bool,
     ) -> Union[
-        Tuple[models.search_by_coordinates.ModelItem, ...],
+        tuple[models.search_by_coordinates.ModelItem, ...],
         models.search_by_coordinates.Model,
     ]: ...
 
@@ -56,7 +56,7 @@ class Search(SearchBase[RequestsClient]):
         *,
         as_list: bool = True,
     ) -> Union[
-        Tuple[models.search_by_coordinates.ModelItem, ...],
+        tuple[models.search_by_coordinates.ModelItem, ...],
         models.search_by_coordinates.Model,
     ]:
         """По координатам.
@@ -96,7 +96,7 @@ class Search(SearchBase[RequestsClient]):
     @overload
     def by_query(
         self, query: str, *, as_list: Literal[True] = ...
-    ) -> Tuple[models.search_by_query.ModelItem, ...]: ...
+    ) -> tuple[models.search_by_query.ModelItem, ...]: ...
 
     @overload
     def by_query(
@@ -107,14 +107,14 @@ class Search(SearchBase[RequestsClient]):
     def by_query(
         self, query: str, *, as_list: bool
     ) -> Union[
-        Tuple[models.search_by_query.ModelItem, ...],
+        tuple[models.search_by_query.ModelItem, ...],
         models.search_by_query.Model,
     ]: ...
 
     def by_query(
         self, query: str, *, as_list: bool = True
     ) -> Union[
-        Tuple[models.search_by_query.ModelItem, ...],
+        tuple[models.search_by_query.ModelItem, ...],
         models.search_by_query.Model,
     ]:
         """По строке.

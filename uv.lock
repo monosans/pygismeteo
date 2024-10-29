@@ -737,7 +737,7 @@ dependencies = [
     { name = "typing-extensions" },
 ]
 
-[package.dependency-groups]
+[package.dev-dependencies]
 dev = [
     { name = "mypy", extra = ["faster-cache"] },
     { name = "pytest" },
@@ -756,7 +756,7 @@ requires-dist = [
     { name = "typing-extensions", specifier = ">=4.4" },
 ]
 
-[package.metadata.dependency-groups]
+[package.metadata.requires-dev]
 dev = [
     { name = "mypy", extras = ["faster-cache"], specifier = "==1.13" },
     { name = "pytest", specifier = "==8.3.3" },

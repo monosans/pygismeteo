@@ -33,9 +33,6 @@ dependencies = [
 urls.documentation = "https://pygismeteo.readthedocs.io"
 urls.repository = "https://github.com/monosans/pygismeteo"
 
-[tool.hatch.build.targets.sdist]
-include = ["pygismeteo"]
-
 [dependency-groups]
 dev = [
   "mypy[faster-cache]==1.13",
@@ -44,3 +41,6 @@ dev = [
   "types-requests==2.32.0.20241016",
 ]
 docs = ["mkdocs-material==9.5.42", "mkdocs-minify-html-plugin==0.2.3"]
+
+[tool.hatch.build.targets.sdist]
+include = ["pygismeteo"]

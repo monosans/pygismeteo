@@ -37,7 +37,7 @@ urls.repository = "https://github.com/monosans/pygismeteo"
 dev = [
   "mypy[faster-cache]==1.13",
   "pytest==8.3.3",
-  "ruff==0.7.1",
+  "ruff==0.7.2",
   "types-requests==2.32.0.20241016",
 ]
 docs = ["mkdocs-material==9.5.43", "mkdocs-minify-html-plugin==0.2.3"]

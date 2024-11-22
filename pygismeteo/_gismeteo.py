@@ -8,10 +8,10 @@ from pygismeteo_base.validators import Settings
 from requests import Session
 from typing_extensions import final
 
-from ._current import Current
-from ._http import RequestsClient
-from ._search import Search
-from ._step_n import Step3, Step6, Step24
+from pygismeteo._current import Current
+from pygismeteo._http import RequestsClient
+from pygismeteo._search import Search
+from pygismeteo._step_n import Step3, Step6, Step24
 
 
 @final

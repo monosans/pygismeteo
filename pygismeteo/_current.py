@@ -3,7 +3,7 @@ from __future__ import annotations
 from pygismeteo_base import models, types
 from pygismeteo_base.current import CurrentBase
 
-from ._http import RequestsClient
+from pygismeteo._http import RequestsClient
 
 
 class Current(CurrentBase[RequestsClient]):

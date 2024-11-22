@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pygismeteo_base import models
 
-from . import types
-from ._gismeteo import Gismeteo
+from pygismeteo import types
+from pygismeteo._gismeteo import Gismeteo
 
 __all__ = ("Gismeteo", "models", "types")

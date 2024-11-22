@@ -7,7 +7,7 @@ from pygismeteo_base.step_n import mixins
 from pygismeteo_base.step_n.abc import StepNABC
 from typing_extensions import Literal, overload
 
-from ._http import RequestsClient
+from pygismeteo._http import RequestsClient
 
 
 class StepN(

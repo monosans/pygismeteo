@@ -40,7 +40,7 @@ dev = [
   "ruff==0.8.0",
   "types-requests==2.32.0.20241016",
 ]
-docs = ["mkdocs-material==9.5.45", "mkdocs-minify-html-plugin==0.2.3"]
+docs = ["mkdocs-material==9.5.46", "mkdocs-minify-html-plugin==0.2.3"]
 
 [tool.hatch.build.targets.sdist]
 include = ["pygismeteo"]

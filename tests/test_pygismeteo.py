@@ -3,9 +3,8 @@ from __future__ import annotations
 from ipaddress import IPv4Address
 from typing import Union
 
-import pydantic
 import pytest
-from requests import HTTPError, Session
+from requests import HTTPError
 
 from pygismeteo import Gismeteo, models
 
@@ -141,26 +140,13 @@ def test_search_by_ip(
     assert isinstance(r, models.search_by_ip.Model)
 
 
-def test_session(gismeteo: Gismeteo, http_session: Session) -> None:
-    assert gismeteo.session is http_session
-    gismeteo.session = None
-    assert gismeteo.session is None
-
-
-def test_valid_lang(gismeteo: Gismeteo) -> None:
-    assert gismeteo.lang is None
-    gismeteo.lang = "en"
-    assert gismeteo.lang == "en"
-
-
-def test_invalid_lang(gismeteo: Gismeteo) -> None:
-    with pytest.raises(pydantic.ValidationError):
-        gismeteo.lang = "asdf"  # type: ignore[assignment]
-
-
-def test_token(gismeteo: Gismeteo, gismeteo_token: str) -> None:
-    assert gismeteo.token == gismeteo_token
-    gismeteo.token = ""
-    assert gismeteo.token == ""  # noqa: PLC1901
-    gismeteo.token = gismeteo_token
-    assert gismeteo.token == gismeteo_token
+@pytest.mark.parametrize("property", ["token", "lang", "session"])
+def test_immutable_properties(gismeteo: Gismeteo, property_: str) -> None:
+    with pytest.raises(
+        AttributeError,
+        match=(
+            f"AttributeError: property '{property_}'"
+            " of 'Gismeteo' object has no setter"
+        ),
+    ):
+        setattr(gismeteo, property_, None)

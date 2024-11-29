@@ -140,7 +140,7 @@ def test_search_by_ip(
     assert isinstance(r, models.search_by_ip.Model)
 
 
-@pytest.mark.parametrize("property", ["token", "lang", "session"])
+@pytest.mark.parametrize("property_", ["token", "lang", "session"])
 def test_immutable_properties(gismeteo: Gismeteo, property_: str) -> None:
     with pytest.raises(
         AttributeError,

@@ -27,7 +27,7 @@ classifiers = [
 ]
 dependencies = [
   "pygismeteo-base>=5.1,<6",
-  "requests>=2.26",
+  "requests>=2.24",
   "typing-extensions>=4.4",
 ]
 urls.documentation = "https://pygismeteo.readthedocs.io"

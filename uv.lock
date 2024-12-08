@@ -772,7 +772,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "pygismeteo-base", specifier = ">=5.1,<6" },
-    { name = "requests", specifier = ">=2.26" },
+    { name = "requests", specifier = ">=2.24" },
     { name = "typing-extensions", specifier = ">=4.4" },
 ]
 

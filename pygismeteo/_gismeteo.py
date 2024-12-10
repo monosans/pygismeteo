@@ -2,38 +2,76 @@ from __future__ import annotations
 
 from typing import Final, Optional
 
-from pydantic import ConfigDict, validate_call
+from pydantic import AnyHttpUrl, validate_call
 from pygismeteo_base.types import Lang
-from pygismeteo_base.validators import Settings
 from requests import Session
-from typing_extensions import final
+from typing_extensions import Self, final
 
-from pygismeteo._current import Current
+from pygismeteo._endpoints.current import Current
+from pygismeteo._endpoints.search import Search
+from pygismeteo._endpoints.step3 import Step3
+from pygismeteo._endpoints.step6 import Step6
+from pygismeteo._endpoints.step24 import Step24
 from pygismeteo._http import RequestsClient
-from pygismeteo._search import Search
-from pygismeteo._step_n import Step3, Step6, Step24
 
 
 @final
 class Gismeteo:
-    """Обёртка для Gismeteo API."""
+    """Обёртка для Gismeteo API.
+
+    Examples:
+        ```python
+        with gismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
+            search_results = gismeteo.search.by_query("Москва")
+            city_id = search_results[0].id
+            current = gismeteo.current.by_id(city_id)
+        print(current)
+        ```
+
+        Кастомный базовый URL:
+
+        ```python
+        with gismeteo.Gismeteo(
+            token=...,
+            base_url=pydantic.AnyHttpUrl("https://api.example.com/v1"),
+        ) as gismeteo:
+            ...
+        ```
+
+        Другой язык:
+
+        ```python
+        with gismeteo.Gismeteo(token=..., lang=gismeteo.Lang.EN) as gismeteo:
+            ...
+        ```
+
+        Кастомная requests.Session:
+
+        ```python
+        with requests.Session() as session:
+            gismeteo = gismeteo.Gismeteo(token=..., session=session)
+            ...
+        ```
+    """
 
     __slots__ = (
+        "_current",
+        "_search",
         "_session",
-        "_settings",
-        "current",
-        "search",
-        "step3",
-        "step6",
-        "step24",
+        "_step3",
+        "_step6",
+        "_step24",
     )
 
-    @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
+    @validate_call(config={"arbitrary_types_allowed": True})
     def __init__(
         self,
         *,
         token: str,
-        lang: Optional[Lang] = None,
+        base_url: AnyHttpUrl = AnyHttpUrl.build(  # noqa: B008
+            scheme="https", host="api.gismeteo.net", path="v2"
+        ),
+        lang: Lang = Lang.RU,
         session: Optional[Session] = None,
     ) -> None:
         """Обёртка для Gismeteo API.
@@ -41,36 +79,103 @@ class Gismeteo:
         Args:
             token:
                 X-Gismeteo-Token.
-                Запросить можно по электронной почте b2b@gismeteo.ru.
-            lang:
-                Язык. По умолчанию "ru".
-            session:
-                Экземпляр requests.Session.
-                По умолчанию для каждого запроса создаётся новый экземпляр.
+                Запросить можно по электронной почте
+                [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
+
+        Examples:
+            ```python
+            with gismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
+                search_results = gismeteo.search.by_query("Москва")
+                city_id = search_results[0].id
+                current = gismeteo.current.by_id(city_id)
+            print(current)
+            ```
+
+            Кастомный базовый URL:
+
+            ```python
+            with gismeteo.Gismeteo(
+                token=...,
+                base_url=pydantic.AnyHttpUrl("https://api.example.com/v1"),
+            ) as gismeteo:
+                ...
+            ```
+
+            Другой язык:
+
+            ```python
+            with gismeteo.Gismeteo(
+                token=..., lang=gismeteo.Lang.EN
+            ) as gismeteo:
+                ...
+            ```
+
+            Кастомная requests.Session:
+
+            ```python
+            with requests.Session() as session:
+                gismeteo = gismeteo.Gismeteo(token=..., session=session)
+                ...
+            ```
         """
-        self._settings = Settings(lang=lang, token=token)
-        self._session = RequestsClient(session, self._settings)
-        self.current: Final = Current(self._session)
-        """Текущая погода."""
-        self.search: Final = Search(self._session)
-        """Поиск."""
-        self.step3: Final = Step3(self._session)
-        """Погода с шагом 3 часа."""
-        self.step6: Final = Step6(self._session)
-        """Погода с шагом 6 часов."""
-        self.step24: Final = Step24(self._session)
-        """Погода с шагом 24 часа."""
+        self._session: Final = RequestsClient(
+            token=token, base_url=base_url, lang=lang, session=session
+        )
+        self._current: Final = Current(self._session)
+        self._search: Final = Search(self._session)
+        self._step3: Final = Step3(self._session)
+        self._step6: Final = Step6(self._session)
+        self._step24: Final = Step24(self._session)
 
     @property
-    def lang(self) -> Optional[Lang]:
-        """Язык."""
-        return self._settings.lang
+    def current(self) -> Current:
+        """Текущая погода."""
+        return self._current
+
+    @property
+    def search(self) -> Search:
+        """Поиск."""
+        return self._search
+
+    @property
+    def step3(self) -> Step3:
+        """Погода с шагом 3 часа."""
+        return self._step3
+
+    @property
+    def step6(self) -> Step6:
+        """Погода с шагом 6 часа."""
+        return self._step6
+
+    @property
+    def step24(self) -> Step24:
+        """Погода с шагом 24 часов."""
+        return self._step24
+
+    @property
+    def token(self) -> str:
+        """X-Gismeteo-Token."""
+        return self._session.token.get_secret_value()
+
+    @property
+    def base_url(self) -> AnyHttpUrl:
+        return self._session.base_url
+
+    @property
+    def lang(self) -> Lang:
+        return self._session.lang
 
     @property
     def session(self) -> Optional[Session]:
         return self._session.session
 
-    @property
-    def token(self) -> str:
-        """X-Gismeteo-Token."""
-        return self._settings.token
+    def close(self) -> None:
+        """Закрыть HTTP сессию."""
+        if self._session.session is not None:
+            self._session.session.close()
+
+    def __enter__(self) -> Self:
+        return self
+
+    def __exit__(self, *_: object) -> None:
+        self.close()

@@ -36,7 +36,7 @@ repos:
           - --scripts-are-modules
         additional_dependencies:
           - orjson
-          - pygismeteo-base<6
+          - pygismeteo-base<7
           - pytest<9
           - types-requests
           - typing-extensions

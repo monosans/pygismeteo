@@ -1,44 +1,20 @@
 from __future__ import annotations
 
-from collections.abc import Mapping
-from typing import Optional
-
 from pygismeteo_base import types
 from pygismeteo_base.http import BaseHttpClient
-from requests import Response, Session
+from requests import Session
 
 
 class RequestsClient(BaseHttpClient[Session]):
     __slots__ = ()
 
-    def get_response(
-        self, endpoint: str, *, params: types.Params = None
-    ) -> str:
+    def get_response(self, endpoint: str, /, *, params: types.Params) -> str:
         params, headers = self._get_params_and_headers(params)
-        if isinstance(self.session, Session):
-            response = self._fetch(
-                endpoint, params=params, headers=headers, session=self.session
-            )
-        else:
-            with Session() as session:
-                response = self._fetch(
-                    endpoint, params=params, headers=headers, session=session
-                )
+        if self.session is None:
+            self.session = Session()
+        with self.session.get(
+            f"{self.base_url}/{endpoint}/", params=params, headers=headers
+        ) as response:
+            pass
         response.raise_for_status()
         return response.text
-
-    def _fetch(  # noqa: PLR6301
-        self,
-        endpoint: str,
-        *,
-        params: Optional[Mapping[str, str]],
-        headers: Mapping[str, str],
-        session: Session,
-    ) -> Response:
-        with session.get(
-            f"https://api.gismeteo.net/v2/{endpoint}/",
-            params=params,
-            headers=headers,
-            timeout=300,
-        ) as response:
-            return response

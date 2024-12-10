@@ -25,6 +25,16 @@ pip install -U pygismeteo pygismeteo-base
 
 <https://pygismeteo.readthedocs.io>
 
+## Пример
+
+```python
+with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
+    search_results = gismeteo.search.by_query("Москва")
+    city_id = search_results[0].id
+    current = gismeteo.current.by_id(city_id)
+print(current)
+```
+
 ## License / Лицензия
 
 [MIT](https://github.com/monosans/pygismeteo/blob/main/LICENSE)

@@ -2,17 +2,6 @@ site_name: pygismeteo
 repo_url: https://github.com/monosans/pygismeteo
 repo_name: monosans/pygismeteo
 edit_uri: edit/main/docs/
-nav:
-  - index.md
-  - install.md
-  - gismeteo.md
-  - current.md
-  - step3.md
-  - step6.md
-  - step24.md
-  - search.md
-  - session.md
-  - types.md
 theme:
   name: material
   features:
@@ -22,8 +11,8 @@ theme:
     - navigation.top
     - toc.follow
   icon:
-    repo: fontawesome/brands/github
     logo: fontawesome/solid/droplet
+    repo: fontawesome/brands/github
   language: ru
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -53,3 +42,30 @@ markdown_extensions:
 plugins:
   - search
   - minify_html
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          import:
+            - https://docs.pydantic.dev/latest/objects.inv
+            - https://docs.python.org/3/objects.inv
+            - https://requests.readthedocs.io/en/stable/objects.inv
+            - https://typing-extensions.readthedocs.io/en/stable/objects.inv
+          options:
+            docstring_options:
+              ignore_init_summary: true
+            filters:
+              - "!^_(?:[^_].*[^_]|_(?:all|doc|format|main|module|new|slots|str)__)$"
+            heading_level: 3
+            members_order: source
+            merge_init_into_class: true
+            preload_modules:
+              - pygismeteo_base
+            separate_signature: true
+            show_if_no_docstring: true
+            show_signature_annotations: true
+            show_source: false
+            show_submodules: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            signature_crossrefs: true

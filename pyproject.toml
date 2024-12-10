@@ -4,7 +4,6 @@ requires = ["hatchling"]
 
 [project]
 name = "pygismeteo"
-version = "6.1.0"
 description = "Wrapper for Gismeteo API"
 readme = "README.md"
 license = { text = "MIT" }
@@ -25,8 +24,9 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Typing :: Typed",
 ]
+dynamic = ["version"]
 dependencies = [
-  "pygismeteo-base>=5.1,<6",
+  "pygismeteo-base>=6.0.1,<7",
   "requests>=2.24",
   "typing-extensions>=4.4",
 ]
@@ -40,7 +40,16 @@ dev = [
   "ruff==0.8.2",
   "types-requests==2.32.0.20241016",
 ]
-docs = ["mkdocs-material==9.5.48", "mkdocs-minify-html-plugin==0.2.3"]
+docs = [
+  "black==24.10",
+  "mkdocs-material==9.5.48",
+  "mkdocs-minify-html-plugin==0.2.3",
+  "mkdocstrings==0.27",
+  "mkdocstrings-python==1.12.2",
+]
 
 [tool.hatch.build.targets.sdist]
 include = ["pygismeteo"]
+
+[tool.hatch.version]
+path = "pygismeteo/__init__.py"

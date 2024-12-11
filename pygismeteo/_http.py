@@ -12,7 +12,7 @@ class HttpxClient(BaseHttpClient[Client]):
         params, headers = self._get_params_and_headers(params)
         if self.session is None:
             self.session = Client(
-                timeout=Timeout(300, connect=30), follow_redirects=True
+                timeout=Timeout(60, connect=5), follow_redirects=True
             )
         response = self.session.get(
             f"{self.base_url}/{endpoint}/", params=params, headers=headers

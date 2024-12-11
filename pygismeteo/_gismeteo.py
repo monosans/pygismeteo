@@ -49,7 +49,7 @@ class Gismeteo:
 
         ```python
         with httpx.Client(
-            timeout=httpx.Timeout(300, connect=30), follow_redirects=True
+            timeout=httpx.Timeout(60, connect=5), follow_redirects=True
         ) as session:
             gismeteo = gismeteo.Gismeteo(token=..., session=session)
             ...
@@ -116,7 +116,7 @@ class Gismeteo:
 
             ```python
             with httpx.Client(
-                timeout=httpx.Timeout(300, connect=30), follow_redirects=True
+                timeout=httpx.Timeout(60, connect=5), follow_redirects=True
             ) as session:
                 gismeteo = gismeteo.Gismeteo(token=..., session=session)
                 ...

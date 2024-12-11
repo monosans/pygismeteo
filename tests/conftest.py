@@ -12,8 +12,10 @@ import pygismeteo
 
 @pytest.fixture(scope="session")
 def http_session() -> Iterator[httpx.Client]:
-    with httpx.Client(timeout=300, follow_redirects=True) as s:
-        yield s
+    with httpx.Client(
+        timeout=httpx.Timeout(300, connect=30), follow_redirects=True
+    ) as session:
+        yield session
 
 
 @pytest.fixture

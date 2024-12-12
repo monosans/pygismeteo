@@ -25,10 +25,12 @@ Examples:
         ...
     ```
 
-    Кастомная requests.Session:
+    Кастомный httpx.Client:
 
     ```python
-    with requests.Session() as session:
+    with httpx.Client(
+        timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+    ) as session:
         gismeteo = pygismeteo.Gismeteo(token=..., session=session)
         ...
     ```

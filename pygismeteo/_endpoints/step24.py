@@ -3,10 +3,10 @@ from __future__ import annotations
 from pygismeteo_base import models, responses, types
 from pygismeteo_base.endpoints.step24 import Step24Base
 
-from pygismeteo._http import RequestsClient
+from pygismeteo._http import HttpxClient
 
 
-class Step24(Step24Base[RequestsClient]):
+class Step24(Step24Base[HttpxClient]):
     """Погода с шагом 24 часа."""
 
     __slots__ = ()

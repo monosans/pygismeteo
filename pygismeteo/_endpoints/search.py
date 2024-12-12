@@ -5,10 +5,10 @@ from ipaddress import IPv4Address
 from pygismeteo_base import models, responses, types
 from pygismeteo_base.endpoints.search import SearchBase
 
-from pygismeteo._http import RequestsClient
+from pygismeteo._http import HttpxClient
 
 
-class Search(SearchBase[RequestsClient]):
+class Search(SearchBase[HttpxClient]):
     """Поиск."""
 
     __slots__ = ()

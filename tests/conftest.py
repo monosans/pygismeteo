@@ -1,19 +1,21 @@
 from __future__ import annotations
 
+import ipaddress
 from collections.abc import Iterator
-from ipaddress import IPv4Address
 
+import httpx
 import pydantic
 import pytest
-from requests import Session
 
 import pygismeteo
 
 
 @pytest.fixture(scope="session")
-def http_session() -> Iterator[Session]:
-    with Session() as s:
-        yield s
+def http_session() -> Iterator[httpx.Client]:
+    with httpx.Client(
+        timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+    ) as session:
+        yield session
 
 
 @pytest.fixture
@@ -39,12 +41,14 @@ def search_query() -> str:
 
 
 @pytest.fixture
-def ipv4_address() -> IPv4Address:
-    return IPv4Address("8.8.8.8")
+def ipv4_address() -> ipaddress.IPv4Address:
+    return ipaddress.IPv4Address("8.8.8.8")
 
 
 @pytest.fixture
-def gismeteo(gismeteo_token: str, http_session: Session) -> pygismeteo.Gismeteo:
+def gismeteo(
+    gismeteo_token: str, http_session: httpx.Client
+) -> pygismeteo.Gismeteo:
     return pygismeteo.Gismeteo(token=gismeteo_token, session=http_session)
 
 

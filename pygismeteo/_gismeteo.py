@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from typing import Final, Optional
 
+from httpx import Client
 from pydantic import AnyHttpUrl, validate_call
 from pygismeteo_base.types import Lang
-from requests import Session
 from typing_extensions import Self, final
 
 from pygismeteo._endpoints.current import Current
@@ -12,7 +12,7 @@ from pygismeteo._endpoints.search import Search
 from pygismeteo._endpoints.step3 import Step3
 from pygismeteo._endpoints.step6 import Step6
 from pygismeteo._endpoints.step24 import Step24
-from pygismeteo._http import RequestsClient
+from pygismeteo._http import HttpxClient
 
 
 @final
@@ -45,10 +45,12 @@ class Gismeteo:
             ...
         ```
 
-        Кастомная requests.Session:
+        Кастомный httpx.Client:
 
         ```python
-        with requests.Session() as session:
+        with httpx.Client(
+            timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+        ) as session:
             gismeteo = gismeteo.Gismeteo(token=..., session=session)
             ...
         ```
@@ -72,7 +74,7 @@ class Gismeteo:
             scheme="https", host="api.gismeteo.net", path="v2"
         ),
         lang: Lang = Lang.RU,
-        session: Optional[Session] = None,
+        session: Optional[Client] = None,
     ) -> None:
         """Обёртка для Gismeteo API.
 
@@ -110,15 +112,17 @@ class Gismeteo:
                 ...
             ```
 
-            Кастомная requests.Session:
+            Кастомный httpx.Client:
 
             ```python
-            with requests.Session() as session:
+            with httpx.Client(
+                timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+            ) as session:
                 gismeteo = gismeteo.Gismeteo(token=..., session=session)
                 ...
             ```
         """
-        self._session: Final = RequestsClient(
+        self._session: Final = HttpxClient(
             token=token, base_url=base_url, lang=lang, session=session
         )
         self._current: Final = Current(self._session)
@@ -166,7 +170,7 @@ class Gismeteo:
         return self._session.lang
 
     @property
-    def session(self) -> Optional[Session]:
+    def session(self) -> Optional[Client]:
         return self._session.session
 
     def close(self) -> None:

@@ -25,21 +25,12 @@ classifiers = [
   "Typing :: Typed",
 ]
 dynamic = ["version"]
-dependencies = [
-  "pygismeteo-base>=6.0.1,<7",
-  "requests>=2.24",
-  "typing-extensions>=4.4",
-]
+dependencies = ["httpx", "pygismeteo-base>=6.0.1,<7", "typing-extensions>=4.4"]
 urls.documentation = "https://pygismeteo.readthedocs.io"
 urls.repository = "https://github.com/monosans/pygismeteo"
 
 [dependency-groups]
-dev = [
-  "mypy[faster-cache]==1.13",
-  "pytest==8.3.4",
-  "ruff==0.8.2",
-  "types-requests==2.32.0.20241016",
-]
+dev = ["mypy[faster-cache]==1.13", "pytest==8.3.4", "ruff==0.8.2"]
 docs = [
   "black==24.10",
   "mkdocs-material==9.5.48",

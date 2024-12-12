@@ -3,10 +3,10 @@ from __future__ import annotations
 from pygismeteo_base import models, responses, types
 from pygismeteo_base.endpoints.current import CurrentBase
 
-from pygismeteo._http import RequestsClient
+from pygismeteo._http import HttpxClient
 
 
-class Current(CurrentBase[RequestsClient]):
+class Current(CurrentBase[HttpxClient]):
     """Текущая погода."""
 
     __slots__ = ()

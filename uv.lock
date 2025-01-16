@@ -857,7 +857,6 @@ wheels = [
 
 [[package]]
 name = "pygismeteo"
-version = "8.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },

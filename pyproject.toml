@@ -43,4 +43,4 @@ docs = [
 include = ["pygismeteo"]
 
 [tool.hatch.version]
-path = "pygismeteo/__init__.py"
+path = "src/pygismeteo/__init__.py"

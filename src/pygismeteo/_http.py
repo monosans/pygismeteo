@@ -8,7 +8,7 @@ from pygismeteo_base.http import BaseHttpClient
 class HttpxClient(BaseHttpClient[Client]):
     __slots__ = ()
 
-    def get_response(self, endpoint: str, /, *, params: types.Params) -> str:
+    def get_response(self, endpoint: str, /, *, params: types.Params) -> bytes:
         params, headers = self._get_params_and_headers(params)
         if self.session is None:
             self.session = Client(
@@ -18,4 +18,4 @@ class HttpxClient(BaseHttpClient[Client]):
             f"{self.base_url}/{endpoint}/", params=params, headers=headers
         )
         response.raise_for_status()
-        return response.text
+        return response.content

@@ -1,9 +1,10 @@
 [build-system]
 build-backend = "uv_build"
-requires = ["uv-build>=0.7.19,<0.8.0"]
+requires = ["uv-build>=0.7.19,<0.8"]
 
 [project]
 name = "pygismeteo"
+version = "8.0.0"
 description = "Wrapper for Gismeteo API"
 readme = "README.md"
 license = { text = "MIT" }
@@ -24,7 +25,6 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Typing :: Typed",
 ]
-dynamic = ["version"]
 dependencies = ["httpx", "pygismeteo-base>=6.0.1,<7", "typing-extensions>=4.4"]
 urls.documentation = "https://pygismeteo.readthedocs.io"
 urls.repository = "https://github.com/monosans/pygismeteo"
@@ -43,9 +43,3 @@ docs = [
   "mkdocstrings-python==1.16.12",
   "ruff==0.12.2",
 ]
-
-[tool.hatch.build.targets.sdist]
-include = ["pygismeteo"]
-
-[tool.hatch.version]
-path = "src/pygismeteo/__init__.py"

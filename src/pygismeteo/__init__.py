@@ -38,10 +38,12 @@ Examples:
 
 from __future__ import annotations
 
+from importlib.metadata import version as _version
+
 from pygismeteo_base import models
 
 from pygismeteo import types
 from pygismeteo._gismeteo import Gismeteo
 
-__version__ = "8.0.0"
+__version__ = _version(__name__)
 __all__ = ("Gismeteo", "models", "types")

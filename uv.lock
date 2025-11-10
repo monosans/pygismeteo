@@ -1033,7 +1033,7 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "httpx" },
+    { name = "httpx", specifier = ">=0.18.2" },
     { name = "pygismeteo-base", specifier = ">=6.0.1,<7" },
     { name = "typing-extensions", specifier = ">=4" },
 ]

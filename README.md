@@ -13,7 +13,7 @@
 
 В настоящее время у разработчика отсутствует API токен, что делает невозможными тестирование и дальнейшую разработку.
 
-Если вам нужна погодная библиотека без API токена, можете рассмотреть <https://github.com/monosans/pywttr>.
+Если вам нужна погодная библиотека без API токена, можете рассмотреть [pywttr](https://github.com/monosans/pywttr).
 
 ## Установка
 
@@ -23,7 +23,7 @@ pip install -U pygismeteo pygismeteo-base
 
 ## Документация
 
-<https://pygismeteo.readthedocs.io>
+<https://monosans.github.io/pygismeteo>
 
 ## Пример
 

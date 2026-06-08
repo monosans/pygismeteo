@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Final
 
-from httpx import Client
+from httpx2 import Client
 from pydantic import AnyHttpUrl, validate_call
 from pygismeteo_base.types import Lang
 from typing_extensions import Self, final
@@ -45,11 +45,11 @@ class Gismeteo:
             ...
         ```
 
-        Кастомный httpx.Client:
+        Кастомный httpx2.Client:
 
         ```python
-        with httpx.Client(
-            timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+        with httpx2.Client(
+            timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
         ) as session:
             gismeteo = gismeteo.Gismeteo(token=..., session=session)
             ...
@@ -112,11 +112,11 @@ class Gismeteo:
                 ...
             ```
 
-            Кастомный httpx.Client:
+            Кастомный httpx2.Client:
 
             ```python
-            with httpx.Client(
-                timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+            with httpx2.Client(
+                timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
             ) as session:
                 gismeteo = gismeteo.Gismeteo(token=..., session=session)
                 ...

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from httpx import Client, Timeout
+from httpx2 import Client, Timeout
 from pygismeteo_base import types
 from pygismeteo_base.http import BaseHttpClient
 

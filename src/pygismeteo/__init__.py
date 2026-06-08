@@ -25,11 +25,11 @@ Examples:
         ...
     ```
 
-    Кастомный httpx.Client:
+    Кастомный httpx2.Client:
 
     ```python
-    with httpx.Client(
-        timeout=httpx.Timeout(60, connect=5), follow_redirects=True
+    with httpx2.Client(
+        timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
     ) as session:
         gismeteo = pygismeteo.Gismeteo(token=..., session=session)
         ...

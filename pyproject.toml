@@ -24,7 +24,7 @@ classifiers = [
 urls.documentation = "https://monosans.github.io/pygismeteo"
 urls.repository = "https://github.com/monosans/pygismeteo"
 dependencies = [
-  "httpx>=0.18.2",
+  "httpx2",
   "pygismeteo-base>=6.0.1,<7",
   "typing-extensions>=4",
 ]

@@ -1,5 +1,6 @@
 site_name: pygismeteo
 site_url: https://monosans.github.io/pygismeteo
+strict: true
 repo_url: https://github.com/monosans/pygismeteo
 repo_name: monosans/pygismeteo
 edit_uri: edit/main/docs/

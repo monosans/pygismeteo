@@ -843,7 +843,7 @@ docs = [
 [[package]]
 name = "pygismeteo-base"
 version = "6.0.2"
-source = { git = "https://github.com/monosans/pygismeteo-base?branch=main#c2dfbed7366d5068629a4e79cf46dbcccfa53fba" }
+source = { git = "https://github.com/monosans/pygismeteo-base?branch=main#e0a83fbef614164966cb9525eeaf837039d9916d" }
 dependencies = [
     { name = "pydantic" },
     { name = "typing-extensions" },

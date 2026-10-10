@@ -2,7 +2,7 @@
 name = "pygismeteo"
 description = "Wrapper for Gismeteo API"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "monosans", email = "hsyqixco@protonmail.com" }]
@@ -13,7 +13,6 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -26,7 +25,6 @@ urls.repository = "https://github.com/monosans/pygismeteo"
 dependencies = [
   "httpx2",
   "pygismeteo-base>=6.0.1,<7",
-  "typing-extensions>=4",
 ]
 dynamic = ["version"]
 
@@ -41,7 +39,7 @@ docs = [
   "mkdocstrings==1.0.6",
   "mkdocstrings-python==2.0.9",
   "ruff==0.16.10",
-  "zensical==0.0.67",
+  "zensical==0.0.68",
 ]
 
 [build-system]

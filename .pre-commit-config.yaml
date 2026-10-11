@@ -40,8 +40,9 @@ repos:
         args:
           - --scripts-are-modules
         additional_dependencies:
-          - httpx2
-          - pygismeteo-base<7
+          - httpx2==2.13.1
+          - pydantic==2.14.0
+          - pygismeteo-base==6.0.2
           - pytest==9.1.1
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
     rev: v1.30.1

@@ -4,7 +4,7 @@
 
 ## Найти город по названию
 
-[`search.by_query`][pygismeteo.types.Search.by_query] ищет города, районы, страны и аэропорты. Если ничего не найдено, вернётся пустой кортеж.
+[`search.by_query`][pygismeteo.types.Search.by_query] ищет по названию населённые пункты, аэропорты и метеостанции. Если ничего не найдено, вернётся пустой кортеж.
 
 ```python
 import pygismeteo
@@ -63,7 +63,7 @@ print("Влажность:", current.humidity.percent, "%")
 print("Давление:", current.pressure.mm_hg_atm, "мм рт. ст.")
 ```
 
-Все поля ответа описаны в [`models.current.Model`][pygismeteo.models.current.Model].
+Остальные поля перечислены в [`models.current.Model`][pygismeteo.models.current.Model].
 
 ## Прогноз по дням
 
@@ -96,7 +96,7 @@ for item in forecast:
 
 ## Облачность, осадки и ветер словами
 
-У значений облачности, осадков, направления ветра и других [перечислений][pygismeteo.models.enums] есть поле `description` с описанием на русском и английском.
+У значений облачности, осадков, направления ветра и других [перечислений][pygismeteo.models.enums] есть атрибут `description` с описанием на русском и английском. От языка ответов он не зависит.
 
 ```python
 import pygismeteo
@@ -128,7 +128,7 @@ print(current.description.full)
 
 ## Таймауты и свой HTTP-клиент
 
-Свой [`httpx2.Client`][httpx2.Client] нужен, чтобы задать таймауты или прокси. По умолчанию таймаут 60 секунд, на подключение 5 секунд.
+Свой [`httpx2.Client`][httpx2.Client] нужен, чтобы задать таймауты или прокси. По умолчанию на подключение даётся 5 секунд, на остальные операции 60 секунд.
 
 ```python
 import httpx2

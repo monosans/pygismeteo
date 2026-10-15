@@ -54,7 +54,7 @@ class Gismeteo:
         Args:
             token: X-Gismeteo-Token. Выдают по запросу на
                 [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
-            base_url: Адрес API.
+            base_url: Адрес API. По умолчанию `https://api.gismeteo.net/v2`.
             lang: Язык названий и описаний в ответах.
             session: Свой HTTP-клиент, например с другими таймаутами.
                 Без него клиент создаётся при первом запросе.

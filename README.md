@@ -4,7 +4,7 @@
 
 Обёртка для [Gismeteo API](https://gismeteo.ru/api/) на Python с типизированными ответами. Асинхронная версия — [aiopygismeteo](https://github.com/monosans/aiopygismeteo).
 
-**Разработка приостановлена:** у разработчика нет токена Gismeteo API, поэтому библиотека не проверяется на реальном API. Погода без токена — в [pywttr](https://github.com/monosans/pywttr).
+**Разработка приостановлена:** у разработчика нет токена Gismeteo API, поэтому библиотека не проверяется на реальном API. Работает с Gismeteo API v2, новая v4 не поддерживается. Погода без токена — в [pywttr](https://github.com/monosans/pywttr).
 
 ## Установка
 

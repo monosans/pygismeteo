@@ -1,12 +1,12 @@
 # pygismeteo
 
-Обёртка для [Gismeteo API](https://gismeteo.ru/api/) на Python с типизированными ответами. Асинхронная версия — [aiopygismeteo](https://monosans.github.io/aiopygismeteo).
+Обёртка для [Gismeteo API](https://gismeteo.ru/api/) на Python с типизированными ответами. Асинхронная версия называется [aiopygismeteo](https://monosans.github.io/aiopygismeteo).
 
 !!! warning "Разработка приостановлена"
 
     Работает с Gismeteo API v2. Новая [v4](https://docs.gismeteo.net/v4/weather/) не поддерживается.
 
-    У разработчика нет токена Gismeteo API, поэтому библиотека не проверяется на реальном API и модели ответов могут устареть. Токен выдают по запросу на [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru). Погода без токена — в [pywttr](https://github.com/monosans/pywttr).
+    У разработчика нет токена Gismeteo API, поэтому библиотека не проверяется на реальном API и модели ответов могут устареть. Токен выдают по запросу на [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru). Погоду без токена можно получить через [pywttr](https://github.com/monosans/pywttr).
 
 ## Установка
 
@@ -36,5 +36,5 @@ print(current.temperature.air.c, current.description.full)
 
 ## Куда дальше
 
-- [Руководство](guide.md) — примеры по задачам: найти город, текущая погода, прогнозы, ошибки, свой HTTP-клиент.
-- [API Reference](api.md) — все классы, методы и поля ответов.
+- [Руководство](guide.md) с примерами по задачам: найти город, текущая погода, прогнозы, ошибки, свой HTTP-клиент.
+- [Справочник API](api.md) со всеми классами, методами и полями ответов.

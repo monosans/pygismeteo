@@ -1,6 +1,6 @@
 # Руководство
 
-Каждый пример запускается как есть, нужен только [токен](index.md). Токен в примерах — образец, замените его своим.
+Каждый пример запускается как есть, нужен только [токен](index.md). В примерах стоит образец токена, замените его своим.
 
 ## Найти город по названию
 
@@ -20,7 +20,7 @@ for place in results:
 
 ## Найти места рядом с точкой
 
-[`search.by_coordinates`][pygismeteo.types.Search.by_coordinates] возвращает до `limit` (1–36) ближайших географических объектов.
+[`search.by_coordinates`][pygismeteo.types.Search.by_coordinates] возвращает ближайшие к точке географические объекты, не больше `limit` (от 1 до 36).
 
 ```python
 import pygismeteo
@@ -47,7 +47,7 @@ print(place.id, place.name, place.country.name)
 
 ## Текущая погода
 
-[`current.by_id`][pygismeteo.types.Current.by_id] принимает ID из поиска, [`current.by_coordinates`][pygismeteo.types.Current.by_coordinates] — широту и долготу.
+[`current.by_id`][pygismeteo.types.Current.by_id] принимает ID из поиска, а [`current.by_coordinates`][pygismeteo.types.Current.by_coordinates] принимает широту и долготу.
 
 ```python
 import pygismeteo
@@ -63,11 +63,11 @@ print("Влажность:", current.humidity.percent, "%")
 print("Давление:", current.pressure.mm_hg_atm, "мм рт. ст.")
 ```
 
-Все поля ответа — в [`models.current.Model`][pygismeteo.models.current.Model].
+Все поля ответа описаны в [`models.current.Model`][pygismeteo.models.current.Model].
 
 ## Прогноз по дням
 
-[`step24`][pygismeteo.types.Step24] даёт прогноз на 3–10 дней: по элементу на сутки с минимумом, максимумом и средним.
+[`step24`][pygismeteo.types.Step24] даёт прогноз на срок от 3 до 10 дней, по элементу на сутки с суточными минимумами и максимумами.
 
 ```python
 import pygismeteo
@@ -82,7 +82,7 @@ for day in forecast:
 
 ## Прогноз по часам
 
-[`step3`][pygismeteo.types.Step3] даёт прогноз с шагом 3 часа на 1–10 дней, [`step6`][pygismeteo.types.Step6] — с шагом 6 часов на 3–10 дней. Ответы у них одинаковой формы.
+[`step3`][pygismeteo.types.Step3] даёт прогноз с шагом 3 часа на срок от 1 до 10 дней, а [`step6`][pygismeteo.types.Step6] с шагом 6 часов на срок от 3 до 10 дней. Ответы у них устроены одинаково.
 
 ```python
 import pygismeteo
@@ -96,7 +96,7 @@ for item in forecast:
 
 ## Облачность, осадки и ветер словами
 
-Коды облачности, осадков, направления ветра и других [перечислений][pygismeteo.models.enums] несут готовое описание на русском и английском в `description`.
+У значений облачности, осадков, направления ветра и других [перечислений][pygismeteo.models.enums] есть поле `description` с описанием на русском и английском.
 
 ```python
 import pygismeteo
@@ -128,7 +128,7 @@ print(current.description.full)
 
 ## Таймауты и свой HTTP-клиент
 
-Передайте свой [`httpx2.Client`][httpx2.Client], чтобы задать таймауты, прокси или переиспользовать соединения. По умолчанию таймаут 60 секунд, на подключение — 5.
+Свой [`httpx2.Client`][httpx2.Client] нужен, чтобы задать таймауты или прокси. По умолчанию таймаут 60 секунд, на подключение 5 секунд.
 
 ```python
 import httpx2
@@ -150,7 +150,7 @@ print(current.description.full)
 
 ## Другой адрес API
 
-Например, для своего прокси перед API: замените `https://api.example.com/v2` в примере его адресом. По умолчанию `base_url` — `https://api.gismeteo.net/v2`.
+Параметр `base_url` пригодится, если перед API стоит ваш прокси. Замените `https://api.example.com/v2` в примере его адресом. По умолчанию используется `https://api.gismeteo.net/v2`.
 
 ```python
 import pydantic
@@ -168,7 +168,7 @@ print(current.description.full)
 
 ## Обработка ошибок
 
-Ответ с кодом ошибки поднимает [`httpx2.HTTPStatusError`][httpx2.HTTPStatusError], сбой сети и таймаут — [`httpx2.RequestError`][httpx2.RequestError]. Аргументы вне допустимых границ и ответ неожиданной формы поднимают [`pydantic.ValidationError`][pydantic_core.ValidationError].
+Если API ответил кодом ошибки, поднимается [`httpx2.HTTPStatusError`][httpx2.HTTPStatusError]. При сбое сети или таймауте поднимается [`httpx2.RequestError`][httpx2.RequestError]. Аргументы вне допустимых границ и ответ неожиданной формы приводят к [`pydantic.ValidationError`][pydantic_core.ValidationError].
 
 ```python
 import httpx2
@@ -191,7 +191,7 @@ with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
 
 ## Аннотации типов
 
-Модели ответов лежат в `pygismeteo.models`, например [`models.current.Model`][pygismeteo.models.current.Model]. Типы аргументов — в `pygismeteo.types`, например [`LocalityID`][pygismeteo.types.LocalityID]. Модели неизменяемые и хешируемые.
+Модели ответов лежат в `pygismeteo.models`, например [`models.current.Model`][pygismeteo.models.current.Model]. Типы аргументов лежат в `pygismeteo.types`, например [`LocalityID`][pygismeteo.types.LocalityID]. Модели неизменяемые и хешируемые.
 
 ```python
 import pygismeteo

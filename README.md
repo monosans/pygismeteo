@@ -1,4 +1,4 @@
-# pygismeteo
+# <img src="https://raw.githubusercontent.com/monosans/pygismeteo/main/docs/assets/logo.svg" alt="" width="40" align="top"> pygismeteo
 
 [![Downloads](https://static.pepy.tech/badge/pygismeteo)](https://pepy.tech/project/pygismeteo)
 

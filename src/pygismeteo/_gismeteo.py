@@ -16,42 +16,16 @@ from pygismeteo._http import HttpxClient
 
 @final
 class Gismeteo:
-    """Обёртка для Gismeteo API.
+    """Клиент Gismeteo API.
+
+    Используйте как контекстный менеджер: на выходе закрывается HTTP-клиент.
 
     Examples:
         ```python
-        with gismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
-            search_results = gismeteo.search.by_query("Москва")
-            city_id = search_results[0].id
-            current = gismeteo.current.by_id(city_id)
-        print(current)
-        ```
-
-        Кастомный базовый URL:
-
-        ```python
-        with gismeteo.Gismeteo(
-            token=...,
-            base_url=pydantic.AnyHttpUrl("https://api.example.com/v1"),
-        ) as gismeteo:
-            ...
-        ```
-
-        Другой язык:
-
-        ```python
-        with gismeteo.Gismeteo(token=..., lang=gismeteo.Lang.EN) as gismeteo:
-            ...
-        ```
-
-        Кастомный httpx2.Client:
-
-        ```python
-        with httpx2.Client(
-            timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
-        ) as session:
-            gismeteo = gismeteo.Gismeteo(token=..., session=session)
-            ...
+        with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
+            city = gismeteo.search.by_query("Москва")[0]
+            current = gismeteo.current.by_id(city.id)
+        print(current.temperature.air.c)
         ```
     """
 
@@ -75,51 +49,17 @@ class Gismeteo:
         lang: Lang = Lang.RU,
         session: Client | None = None,
     ) -> None:
-        """Обёртка для Gismeteo API.
+        """Создать клиент.
 
         Args:
-            token:
-                X-Gismeteo-Token.
-                Запросить можно по электронной почте
+            token: X-Gismeteo-Token. Выдают по запросу на
                 [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
-
-        Examples:
-            ```python
-            with gismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
-                search_results = gismeteo.search.by_query("Москва")
-                city_id = search_results[0].id
-                current = gismeteo.current.by_id(city_id)
-            print(current)
-            ```
-
-            Кастомный базовый URL:
-
-            ```python
-            with gismeteo.Gismeteo(
-                token=...,
-                base_url=pydantic.AnyHttpUrl("https://api.example.com/v1"),
-            ) as gismeteo:
-                ...
-            ```
-
-            Другой язык:
-
-            ```python
-            with gismeteo.Gismeteo(
-                token=..., lang=gismeteo.Lang.EN
-            ) as gismeteo:
-                ...
-            ```
-
-            Кастомный httpx2.Client:
-
-            ```python
-            with httpx2.Client(
-                timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
-            ) as session:
-                gismeteo = gismeteo.Gismeteo(token=..., session=session)
-                ...
-            ```
+            base_url: Адрес API.
+            lang: Язык названий и описаний в ответах.
+            session: Свой HTTP-клиент, например с другими таймаутами.
+                Без него клиент создаётся при первом запросе.
+                [`close`][pygismeteo.Gismeteo.close] закрывает и переданный
+                клиент.
         """
         self._session: Final = HttpxClient(
             token=token, base_url=base_url, lang=lang, session=session
@@ -137,22 +77,22 @@ class Gismeteo:
 
     @property
     def search(self) -> Search:
-        """Поиск."""
+        """Поиск географических объектов."""
         return self._search
 
     @property
     def step3(self) -> Step3:
-        """Погода с шагом 3 часа."""
+        """Прогноз с шагом 3 часа."""
         return self._step3
 
     @property
     def step6(self) -> Step6:
-        """Погода с шагом 6 часа."""
+        """Прогноз с шагом 6 часов."""
         return self._step6
 
     @property
     def step24(self) -> Step24:
-        """Погода с шагом 24 часов."""
+        """Прогноз с шагом 24 часа."""
         return self._step24
 
     @property
@@ -162,18 +102,21 @@ class Gismeteo:
 
     @property
     def base_url(self) -> AnyHttpUrl:
+        """Адрес API."""
         return self._session.base_url
 
     @property
     def lang(self) -> Lang:
+        """Язык ответов."""
         return self._session.lang
 
     @property
     def session(self) -> Client | None:
+        """HTTP-клиент: переданный или созданный при первом запросе."""
         return self._session.session
 
     def close(self) -> None:
-        """Закрыть HTTP сессию."""
+        """Закрыть HTTP-клиент, в том числе переданный в `session`."""
         if self._session.session is not None:
             self._session.session.close()
 

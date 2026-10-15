@@ -7,7 +7,7 @@ from pygismeteo._http import HttpxClient
 
 
 class Step3(Step3Base[HttpxClient]):
-    """Погода с шагом 3 часа."""
+    """Прогноз с шагом 3 часа."""
 
     __slots__ = ()
 
@@ -18,12 +18,12 @@ class Step3(Step3Base[HttpxClient]):
         *,
         days: types.Step3Days,
     ) -> models.step3.Model:
-        """По координатам.
+        """Прогноз по координатам.
 
         Args:
             latitude: Широта.
             longitude: Долгота.
-            days: Количество дней.
+            days: Количество дней, от 1 до 10.
 
         Examples:
             ```python
@@ -39,11 +39,11 @@ class Step3(Step3Base[HttpxClient]):
     def by_id(
         self, id_: types.LocalityID, /, *, days: types.Step3Days
     ) -> models.step3.Model:
-        """По ID географического объекта.
+        """Прогноз по ID географического объекта.
 
         Args:
-            id_: ID географического объекта. Получить можно через поиск.
-            days: Количество дней.
+            id_: ID географического объекта из поиска.
+            days: Количество дней, от 1 до 10.
 
         Examples:
             ```python

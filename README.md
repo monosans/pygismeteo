@@ -2,37 +2,35 @@
 
 [![Downloads](https://static.pepy.tech/badge/pygismeteo)](https://pepy.tech/project/pygismeteo)
 
-Обёртка для [Gismeteo API](https://gismeteo.ru/api/).
+Обёртка для [Gismeteo API](https://gismeteo.ru/api/) на Python с типизированными ответами. Асинхронная версия называется [aiopygismeteo](https://github.com/monosans/aiopygismeteo).
 
-Асинхронная версия [здесь](https://github.com/monosans/aiopygismeteo).
-
-## Разработка приостановлена
-
-Для использования библиотеки нужен API токен, который можно запросить по электронной почте [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
-
-В настоящее время у разработчика отсутствует API токен, что делает невозможными тестирование и дальнейшую разработку.
-
-Если вам нужна погодная библиотека без API токена, можете рассмотреть [pywttr](https://github.com/monosans/pywttr).
+Разработка приостановлена: у разработчика нет токена Gismeteo API, поэтому библиотека не проверяется на реальном API. Работает с Gismeteo API v2, новая v4 не поддерживается. Погоду без токена можно получить через [pywttr](https://github.com/monosans/pywttr).
 
 ## Установка
 
 ```bash
+uv add pygismeteo pygismeteo-base
+# или
 pip install -U pygismeteo pygismeteo-base
 ```
-
-## Документация
-
-<https://monosans.github.io/pygismeteo>
 
 ## Пример
 
 ```python
+import pygismeteo
+
 with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
-    search_results = gismeteo.search.by_query("Москва")
-    city_id = search_results[0].id
-    current = gismeteo.current.by_id(city_id)
-print(current)
+    city = gismeteo.search.by_query("Москва")[0]
+    current = gismeteo.current.by_id(city.id)
+
+print(current.temperature.air.c, current.description.full)
 ```
+
+В примере стоит образец токена. Свой выдают по запросу на [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
+
+## Документация
+
+<https://monosans.github.io/pygismeteo>
 
 ## License / Лицензия
 

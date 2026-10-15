@@ -4,6 +4,10 @@ strict: true
 repo_url: https://github.com/monosans/pygismeteo
 repo_name: monosans/pygismeteo
 edit_uri: edit/main/docs/
+nav:
+  - Главная: index.md
+  - Руководство: guide.md
+  - Справочник API: api.md
 theme:
   features:
     - content.action.edit
@@ -23,12 +27,12 @@ theme:
       scheme: default
       toggle:
         icon: lucide/sun
-        name: Switch to dark mode
+        name: Переключиться в тёмный режим
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
         icon: lucide/moon
-        name: Switch to light mode
+        name: Переключиться в светлый режим
 extra:
   social:
     - icon: fontawesome/brands/telegram
@@ -38,9 +42,17 @@ extra:
       link: https://linkedin.com/in/monosans
       name: LinkedIn разработчика
 markdown_extensions:
+  - admonition
+  - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      toc_depth: 3
 plugins:
   - minify:
       minify_html: true
@@ -61,11 +73,12 @@ plugins:
             heading_level: 3
             members_order: source
             merge_init_into_class: true
-            parameter_headings: true
+            parameter_headings: false
             preload_modules:
               - pygismeteo_base
             separate_signature: true
             show_if_no_docstring: true
+            show_root_heading: true
             show_signature_annotations: true
             show_source: false
             show_submodules: true

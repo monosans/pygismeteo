@@ -26,7 +26,7 @@ with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
 print(current.temperature.air.c, current.description.full)
 ```
 
-Токен выдают по запросу на [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
+В примере стоит образец токена. Свой выдают по запросу на [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru).
 
 ## Документация
 

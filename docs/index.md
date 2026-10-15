@@ -34,6 +34,8 @@ with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
 print(current.temperature.air.c, current.description.full)
 ```
 
+В примере стоит образец токена, замените его своим.
+
 ## Куда дальше
 
 - [Руководство](guide.md) с примерами по задачам: найти город, текущая погода, прогнозы, ошибки, свой HTTP-клиент.

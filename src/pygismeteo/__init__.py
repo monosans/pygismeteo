@@ -1,38 +1,13 @@
 """Обёртка для Gismeteo API.
 
+Документация: <https://monosans.github.io/pygismeteo>.
+
 Examples:
     ```python
     with pygismeteo.Gismeteo(token="56b30cb255.3443075") as gismeteo:
-        search_results = gismeteo.search.by_query("Москва")
-        city_id = search_results[0].id
-        current = gismeteo.current.by_id(city_id)
-    print(current)
-    ```
-
-    Кастомный базовый URL:
-
-    ```python
-    with pygismeteo.Gismeteo(
-        token=..., base_url=pydantic.AnyHttpUrl("https://api.example.com/v1")
-    ) as gismeteo:
-        ...
-    ```
-
-    Другой язык:
-
-    ```python
-    with pygismeteo.Gismeteo(token=..., lang=pygismeteo.Lang.EN) as gismeteo:
-        ...
-    ```
-
-    Кастомный httpx2.Client:
-
-    ```python
-    with httpx2.Client(
-        timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
-    ) as session:
-        gismeteo = pygismeteo.Gismeteo(token=..., session=session)
-        ...
+        city = gismeteo.search.by_query("Москва")[0]
+        current = gismeteo.current.by_id(city.id)
+    print(current.temperature.air.c)
     ```
 """
 

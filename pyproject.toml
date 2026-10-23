@@ -24,7 +24,7 @@ classifiers = [
 urls.documentation = "https://monosans.github.io/pygismeteo"
 urls.repository = "https://github.com/monosans/pygismeteo"
 dependencies = [
-  "httpx2",
+  "httpx2>=2.0.0",
   "pygismeteo-base>=6.0.1,<7",
 ]
 dynamic = ["version"]
@@ -44,7 +44,7 @@ docs = [
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.sdist]

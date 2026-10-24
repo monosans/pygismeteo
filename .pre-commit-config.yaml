@@ -41,7 +41,7 @@ repos:
         args:
           - --scripts-are-modules
         additional_dependencies:
-          - httpx2==2.15.1
+          - httpx2==2.16.0
           - pydantic==2.14.1
           - pygismeteo-base==6.0.6
           - pytest==9.1.1

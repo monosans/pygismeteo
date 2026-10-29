@@ -833,7 +833,6 @@ dependencies = [
 dev = [
     { name = "mypy" },
     { name = "pytest" },
-    { name = "pytest-github-actions-annotate-failures" },
     { name = "ruff" },
 ]
 docs = [
@@ -841,6 +840,10 @@ docs = [
     { name = "mkdocstrings-python" },
     { name = "ruff" },
     { name = "zensical" },
+]
+test = [
+    { name = "pytest" },
+    { name = "pytest-github-actions-annotate-failures" },
 ]
 
 [package.metadata]
@@ -853,7 +856,6 @@ requires-dist = [
 dev = [
     { name = "mypy", specifier = "==2.4.0" },
     { name = "pytest", specifier = "==9.1.1" },
-    { name = "pytest-github-actions-annotate-failures", specifier = "==0.4.2" },
     { name = "ruff", specifier = "==0.17.2" },
 ]
 docs = [
@@ -861,6 +863,10 @@ docs = [
     { name = "mkdocstrings-python", specifier = "==2.0.10" },
     { name = "ruff", specifier = "==0.17.2" },
     { name = "zensical", specifier = "==0.0.73" },
+]
+test = [
+    { name = "pytest", specifier = "==9.1.1" },
+    { name = "pytest-github-actions-annotate-failures", specifier = "==0.4.2" },
 ]
 
 [[package]]

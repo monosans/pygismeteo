@@ -33,7 +33,6 @@ dynamic = ["version"]
 dev = [
   "mypy==2.4.0",
   "pytest==9.1.1",
-  "pytest-github-actions-annotate-failures==0.4.2",
   "ruff==0.17.2",
 ]
 docs = [
@@ -42,6 +41,7 @@ docs = [
   "ruff==0.17.2",
   "zensical==0.0.73",
 ]
+test = ["pytest==9.1.1", "pytest-github-actions-annotate-failures==0.4.2"]
 
 [build-system]
 requires = ["hatchling>=1.27"]

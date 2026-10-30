@@ -32,8 +32,8 @@ dynamic = ["version"]
 [dependency-groups]
 dev = [
   "mypy==2.4.0",
-  "pytest==9.1.1",
   "ruff==0.17.2",
+  { include-group = "test" },
 ]
 docs = [
   "mkdocstrings==1.0.8",
@@ -41,7 +41,11 @@ docs = [
   "ruff==0.17.2",
   "zensical==0.0.73",
 ]
-test = ["pytest==9.1.1", "pytest-github-actions-annotate-failures==0.4.2"]
+test = ["pytest==9.1.1"]
+test-ci = [
+  "pytest-github-actions-annotate-failures==0.4.2",
+  { include-group = "test" },
+]
 
 [build-system]
 requires = ["hatchling>=1.27"]

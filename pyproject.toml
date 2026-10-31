@@ -25,6 +25,7 @@ urls.documentation = "https://monosans.github.io/pygismeteo"
 urls.repository = "https://github.com/monosans/pygismeteo"
 dependencies = [
   "httpx2>=2.0.0",
+  "pydantic>=2",
   "pygismeteo-base>=6.0.1,<7",
 ]
 dynamic = ["version"]

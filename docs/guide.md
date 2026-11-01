@@ -118,9 +118,7 @@ if current.wind.direction.scale_8 is not None:
 ```python
 import pygismeteo
 
-with pygismeteo.Gismeteo(
-    token="56b30cb255.3443075", lang=pygismeteo.types.Lang.EN
-) as gismeteo:
+with pygismeteo.Gismeteo(token="56b30cb255.3443075", lang=pygismeteo.types.Lang.EN) as gismeteo:
     current = gismeteo.current.by_id(4368)
 
 print(current.description.full)
@@ -135,9 +133,7 @@ import httpx2
 
 import pygismeteo
 
-with httpx2.Client(
-    timeout=httpx2.Timeout(10, connect=3), follow_redirects=True
-) as session:
+with httpx2.Client(timeout=httpx2.Timeout(10, connect=3), follow_redirects=True) as session:
     gismeteo = pygismeteo.Gismeteo(token="56b30cb255.3443075", session=session)
     current = gismeteo.current.by_id(4368)
 
@@ -158,8 +154,7 @@ import pydantic
 import pygismeteo
 
 with pygismeteo.Gismeteo(
-    token="56b30cb255.3443075",
-    base_url=pydantic.AnyHttpUrl("https://api.example.com/v2"),
+    token="56b30cb255.3443075", base_url=pydantic.AnyHttpUrl("https://api.example.com/v2")
 ) as gismeteo:
     current = gismeteo.current.by_id(4368)
 

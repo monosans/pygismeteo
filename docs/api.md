@@ -32,7 +32,7 @@
 
 ::: pygismeteo.models.step24
 
-<!-- prettier-ignore -->
+<!-- oxfmt-ignore -->
 ::: pygismeteo.models.enums
     options:
       show_signature: false

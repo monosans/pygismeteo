@@ -32,7 +32,6 @@
 
 ::: pygismeteo.models.step24
 
-<!-- prettier-ignore -->
 ::: pygismeteo.models.enums
     options:
       show_signature: false

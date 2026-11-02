@@ -29,14 +29,7 @@ class Gismeteo:
         ```
     """
 
-    __slots__ = (
-        "_current",
-        "_search",
-        "_session",
-        "_step3",
-        "_step6",
-        "_step24",
-    )
+    __slots__ = ("_current", "_search", "_session", "_step3", "_step6", "_step24")
 
     @validate_call(config={"arbitrary_types_allowed": True})
     def __init__(

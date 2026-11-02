@@ -67,9 +67,7 @@ def test_step24_by_coordinates(
 
 @pytest.mark.xfail(raises=httpx2.HTTPStatusError)
 @pytest.mark.usefixtures("_pydantic_ignore_extra")
-def test_search_by_query(
-    gismeteo: pygismeteo.Gismeteo, search_query: str
-) -> None:
+def test_search_by_query(gismeteo: pygismeteo.Gismeteo, search_query: str) -> None:
     r = gismeteo.search.by_query(search_query)
     assert isinstance(r, pygismeteo.models.search_by_query.Model)
 
@@ -85,8 +83,6 @@ def test_search_by_coordinates(
 
 @pytest.mark.xfail(raises=httpx2.HTTPStatusError)
 @pytest.mark.usefixtures("_pydantic_ignore_extra")
-def test_search_by_ip(
-    gismeteo: pygismeteo.Gismeteo, ipv4_address: ipaddress.IPv4Address
-) -> None:
+def test_search_by_ip(gismeteo: pygismeteo.Gismeteo, ipv4_address: ipaddress.IPv4Address) -> None:
     r = gismeteo.search.by_ip(ipv4_address)
     assert isinstance(r, pygismeteo.models.search_by_ip.Model)

@@ -12,11 +12,7 @@ class Step24(Step24Base[HttpxClient]):
     __slots__ = ()
 
     def by_coordinates(
-        self,
-        latitude: types.Latitude,
-        longitude: types.Longitude,
-        *,
-        days: types.Step24Days,
+        self, latitude: types.Latitude, longitude: types.Longitude, *, days: types.Step24Days
     ) -> models.step24.Model:
         """Прогноз по координатам.
 
@@ -31,14 +27,10 @@ class Step24(Step24Base[HttpxClient]):
             print(step24)
             ```
         """
-        url, params = self._get_params_by_coordinates(
-            latitude, longitude, days=days
-        )
+        url, params = self._get_params_by_coordinates(latitude, longitude, days=days)
         return self._get_result(url, params=params)
 
-    def by_id(
-        self, id_: types.LocalityID, /, *, days: types.Step24Days
-    ) -> models.step24.Model:
+    def by_id(self, id_: types.LocalityID, /, *, days: types.Step24Days) -> models.step24.Model:
         """Прогноз по ID географического объекта.
 
         Args:
@@ -56,9 +48,7 @@ class Step24(Step24Base[HttpxClient]):
         url, params = self._get_params_by_id(id_, days=days)
         return self._get_result(url, params=params)
 
-    def _get_result(
-        self, url: str, /, *, params: types.Params
-    ) -> models.step24.Model:
-        return responses.step24.validate_json(
-            self._session.get_response(url, params=params)
-        )["response"]
+    def _get_result(self, url: str, /, *, params: types.Params) -> models.step24.Model:
+        return responses.step24.validate_json(self._session.get_response(url, params=params))[
+            "response"
+        ]

@@ -12,9 +12,7 @@ import pygismeteo
 
 @pytest.fixture(scope="session")
 def http_session() -> Iterator[httpx2.Client]:
-    with httpx2.Client(
-        timeout=httpx2.Timeout(60, connect=5), follow_redirects=True
-    ) as session:
+    with httpx2.Client(timeout=httpx2.Timeout(60, connect=5), follow_redirects=True) as session:
         yield session
 
 
@@ -46,9 +44,7 @@ def ipv4_address() -> ipaddress.IPv4Address:
 
 
 @pytest.fixture
-def gismeteo(
-    gismeteo_token: str, http_session: httpx2.Client
-) -> pygismeteo.Gismeteo:
+def gismeteo(gismeteo_token: str, http_session: httpx2.Client) -> pygismeteo.Gismeteo:
     return pygismeteo.Gismeteo(token=gismeteo_token, session=http_session)
 
 

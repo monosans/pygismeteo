@@ -12,11 +12,7 @@ class Step3(Step3Base[HttpxClient]):
     __slots__ = ()
 
     def by_coordinates(
-        self,
-        latitude: types.Latitude,
-        longitude: types.Longitude,
-        *,
-        days: types.Step3Days,
+        self, latitude: types.Latitude, longitude: types.Longitude, *, days: types.Step3Days
     ) -> models.step3.Model:
         """Прогноз по координатам.
 
@@ -31,14 +27,10 @@ class Step3(Step3Base[HttpxClient]):
             print(step3)
             ```
         """
-        url, params = self._get_params_by_coordinates(
-            latitude, longitude, days=days
-        )
+        url, params = self._get_params_by_coordinates(latitude, longitude, days=days)
         return self._get_result(url, params=params)
 
-    def by_id(
-        self, id_: types.LocalityID, /, *, days: types.Step3Days
-    ) -> models.step3.Model:
+    def by_id(self, id_: types.LocalityID, /, *, days: types.Step3Days) -> models.step3.Model:
         """Прогноз по ID географического объекта.
 
         Args:
@@ -56,9 +48,7 @@ class Step3(Step3Base[HttpxClient]):
         url, params = self._get_params_by_id(id_, days=days)
         return self._get_result(url, params=params)
 
-    def _get_result(
-        self, url: str, /, *, params: types.Params
-    ) -> models.step3.Model:
-        return responses.step3.validate_json(
-            self._session.get_response(url, params=params)
-        )["response"]
+    def _get_result(self, url: str, /, *, params: types.Params) -> models.step3.Model:
+        return responses.step3.validate_json(self._session.get_response(url, params=params))[
+            "response"
+        ]

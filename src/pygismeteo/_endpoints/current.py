@@ -46,9 +46,7 @@ class Current(CurrentBase[HttpxClient]):
         url, params = self._get_params_by_id(id_)
         return self._get_result(url, params=params)
 
-    def _get_result(
-        self, url: str, /, *, params: types.Params
-    ) -> models.current.Model:
-        return responses.current.validate_json(
-            self._session.get_response(url, params=params)
-        )["response"]
+    def _get_result(self, url: str, /, *, params: types.Params) -> models.current.Model:
+        return responses.current.validate_json(self._session.get_response(url, params=params))[
+            "response"
+        ]

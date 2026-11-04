@@ -12,6 +12,8 @@ class HttpxClient(BaseHttpClient[Client]):
         params, headers = self._get_params_and_headers(params)
         if self.session is None:
             self.session = Client(timeout=Timeout(60, connect=5), follow_redirects=True)
-        response = self.session.get(f"{self.base_url}/{endpoint}/", params=params, headers=headers)
+        response = self.session.get(
+            f"{str(self.base_url).rstrip('/')}/{endpoint}/", params=params, headers=headers
+        )
         response.raise_for_status()
         return response.content

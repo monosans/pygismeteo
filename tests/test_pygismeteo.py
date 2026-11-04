@@ -4,6 +4,7 @@ import ipaddress
 
 import httpx2
 import pytest
+from pydantic import AnyHttpUrl
 
 import pygismeteo
 
@@ -86,3 +87,27 @@ def test_search_by_coordinates(
 def test_search_by_ip(gismeteo: pygismeteo.Gismeteo, ipv4_address: ipaddress.IPv4Address) -> None:
     r = gismeteo.search.by_ip(ipv4_address)
     assert isinstance(r, pygismeteo.models.search_by_ip.Model)
+
+
+@pytest.mark.parametrize(
+    ("path", "expected"),
+    [
+        ("", "/weather/current/4368/"),
+        ("/v2", "/v2/weather/current/4368/"),
+        ("/v2/", "/v2/weather/current/4368/"),
+    ],
+)
+def test_request_url(gismeteo_token: str, path: str, expected: str) -> None:
+    requests: list[httpx2.Request] = []
+
+    def handler(request: httpx2.Request) -> httpx2.Response:
+        requests.append(request)
+        return httpx2.Response(500)
+
+    with httpx2.Client(transport=httpx2.MockTransport(handler)) as session:
+        gismeteo = pygismeteo.Gismeteo(
+            token=gismeteo_token, base_url=AnyHttpUrl(f"https://example.com{path}"), session=session
+        )
+        with pytest.raises(httpx2.HTTPStatusError):
+            gismeteo.current.by_id(4368)
+    assert [request.url.path for request in requests] == [expected]

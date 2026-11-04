@@ -6,6 +6,12 @@
 
 Разработка приостановлена: у разработчика нет токена Gismeteo API, поэтому библиотека не проверяется на реальном API. Работает с Gismeteo API v2, новая v4 не поддерживается. Погоду без токена можно получить через [pywttr](https://github.com/monosans/pywttr).
 
+## In English
+
+pygismeteo is a Python wrapper for the [Gismeteo API](https://gismeteo.ru/api/) with typed responses. The async version is [aiopygismeteo](https://github.com/monosans/aiopygismeteo). The documentation and the rest of this README are in Russian, but the code example below should be easy to follow.
+
+Development is on hold. The author has no Gismeteo API token, so the library isn't tested against the real API. It works with Gismeteo API v2 and doesn't support v4. Gismeteo issues tokens on request at [b2b@gismeteo.ru](mailto:b2b@gismeteo.ru). For weather data without a token, try [pywttr](https://github.com/monosans/pywttr).
+
 ## Установка
 
 ```bash

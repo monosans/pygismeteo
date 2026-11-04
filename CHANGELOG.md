@@ -4,7 +4,7 @@
 
 ## [8.0.7] - 2026-11-04
 
-- A `base_url` that ends with a slash, such as `https://example.com/` or `https://api.gismeteo.net/v2/`, no longer leads to requests with a double slash (`https://example.com//weather/current/…`). The default base URL wasn't affected.
+- Исправлен двойной слеш в URL запросов, если `base_url` оканчивается на `/`, например `https://api.gismeteo.net/v2/`: запрос уходил на `https://api.gismeteo.net/v2//weather/current/…`. С `base_url` по умолчанию ошибки не было.
 
 ## [8.0.6] - 2026-10-15
 

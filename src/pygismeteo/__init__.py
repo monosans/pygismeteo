@@ -18,5 +18,5 @@ from pygismeteo_base import models
 from pygismeteo import types
 from pygismeteo._gismeteo import Gismeteo
 
-__version__ = "8.0.6"
+__version__ = "8.0.7"
 __all__ = ("Gismeteo", "models", "types")

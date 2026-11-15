@@ -41,7 +41,7 @@ urls.issues = "https://github.com/monosans/pygismeteo/issues"
 urls.repository = "https://github.com/monosans/pygismeteo"
 dependencies = [
   "httpx2>=2.0.0",
-  "pydantic>=2",
+  "pydantic>=2.7.2",
   "pygismeteo-base>=6.0.1,<7",
 ]
 dynamic = ["version"]

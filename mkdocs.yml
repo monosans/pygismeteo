@@ -1,5 +1,6 @@
 site_name: pygismeteo
 site_url: https://monosans.github.io/pygismeteo
+site_description: Обёртка для Gismeteo API на Python с типизированными ответами
 strict: true
 repo_url: https://github.com/monosans/pygismeteo
 repo_name: monosans/pygismeteo

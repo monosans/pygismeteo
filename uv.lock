@@ -873,8 +873,8 @@ test-ci = [
 
 [[package]]
 name = "pygismeteo-base"
-version = "6.0.8"
-source = { git = "https://github.com/monosans/pygismeteo-base?branch=main#004a5b26388949a86145a1efc9441df587933f2e" }
+version = "6.0.9"
+source = { git = "https://github.com/monosans/pygismeteo-base?branch=main#a7c795a0b6329d051136986506e81e4e863720bc" }
 dependencies = [
     { name = "pydantic" },
     { name = "typing-extensions" },
